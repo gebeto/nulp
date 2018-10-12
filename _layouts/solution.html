@@ -12,6 +12,7 @@ layout: default
 {% if page.tags %}
   <small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
 {% endif %}
+
 {% if page.bundles %}
-  <script src="{{ page.bundles | join: "\"></script><script src=\"" }}"></script>
+  <script src="{{ page.bundle }}"></script>
 {% endif %}
