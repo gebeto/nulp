@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default_bundled
 ---
 
 # Комп'ютерна графіка
