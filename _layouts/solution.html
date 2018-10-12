@@ -13,6 +13,8 @@ layout: default
   <small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
 {% endif %}
 
-{% if page.bundle %}
-  <script src="{{ page.bundle }}"></script>
+{% if page.bundles %}
+  {% for bundle in page.bundles %}
+    <script src="{{ bundle }}"></script>
+  {% endif %}
 {% endif %}
