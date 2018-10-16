@@ -3,3 +3,7 @@
 ```js
 console.log('Hello world!!!');
 ```
+
+```canvas
+console.log('Hello world!!!');
+```
