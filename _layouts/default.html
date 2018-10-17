@@ -38,11 +38,12 @@
           </ul>
         {% endif %}
         
-        {% if site.test %}
+        {% if site.data.test %}
           <ul>
-            {% for post in site.test %}
+            {% for test in site.data.test %}
               <li>
-                <a href="{{ post.url }}">{{ post.title }}</a>
+                <h3>{{ test.title }}</h3>
+                <p>{{ test.description }}</p>
               </li>
             {% endfor %}
           </ul>
