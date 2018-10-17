@@ -1,3 +1,69 @@
+body {
+    @media print {
+        margin: 0;
+        padding: 0;
+        font-size: 18px;
+    }
+}
+
+.page {
+    width: 595px;
+    min-height: 842px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border: 1px solid red;
+    min-height: 842px;
+    padding: 1cm;
+    
+    margin: 10px auto;
+
+    @media print {
+        width: auto;
+        min-height: auto;
+        margin: 0;
+        box-sizing: initial;
+        padding: 0;
+        border: none;
+        page-break-before: always;
+    }
+}
+
+.print-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &__title {
+        text-align: center;
+    }
+
+    &__logo-wrapper {
+        text-align: center;
+    }
+
+    &__logo {
+        width: 35%;
+    }
+
+    &__description {
+        text-align: center;
+    }
+
+    &__persons {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    &__footer {
+        text-align: center;
+    }
+
+    @media print {
+        min-height: 100vh;
+    }
+}
+
 @media print {
     *,
     *:before,
@@ -11,69 +77,6 @@
         color: #000 !important;
         box-shadow: none !important;
         text-shadow: none !important;
-    }
-
-    .print-header {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        &__title {
-            text-align: center;
-        }
-
-        &__logo-wrapper {
-            text-align: center;
-        }
-
-        &__logo {
-            /*width: 200px;*/
-            width: 35%;
-        }
-
-        &__description {
-            text-align: center;
-        }
-
-        &__persons {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        &__footer {
-            text-align: center;
-        }
-    }
-    
-    body {
-        margin: 0;
-        padding: 0;
-        font-size: 14px;
-    }
-
-    .page {
-        width: 595px;
-        min-height: 842px;
-        margin: 0 auto;
-        box-sizing: border-box;
-        border: 1px solid red;
-        min-height: 842px;
-        padding: 1cm;
-    }
-
-    .page {
-        width: auto;
-        min-height: auto;
-        margin: 0;
-        box-sizing: initial;
-        padding: 0;
-        border: none;
-        page-break-before: always;
-    }
-
-    .print-header {
-        min-height: 100vh;
     }
 
     @page{
