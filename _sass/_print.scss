@@ -28,6 +28,15 @@ body {
     }
 }
 
+@page {
+    @media print {
+        margin-left: 1cm;
+        margin-right: 1cm;
+        margin-top: 1cm;
+        margin-bottom: 1cm;
+    }
+}
+
 .print-header {
     display: flex;
     flex-direction: column;
@@ -77,12 +86,5 @@ body {
         color: #000 !important;
         box-shadow: none !important;
         text-shadow: none !important;
-    }
-
-    @page{
-        margin-left: 1cm;
-        margin-right: 1cm;
-        margin-top: 1cm;
-        margin-bottom: 1cm;
     }
 }
