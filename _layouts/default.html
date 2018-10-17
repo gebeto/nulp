@@ -44,7 +44,7 @@
         {% if site.posts %}
           <ul>
             {% for post in site.posts %}
-              <li><a href="{{ site.base_url }}{{ post.url }}"><strong>{{ post.title }}</strong></a></li>
+              <li><a href="{{ site.github.repository_name }}{{ post.url }}"><strong>{{ post.title }}</strong></a></li>
             {% endfor %}
           </ul>
         {% endif %}
