@@ -44,7 +44,7 @@
         {% if site.posts %}
           <ul>
             {% for post in site.posts %}
-              <li><a href="{{ post.url }}"><strong>{{ post.title }}</strong></a></li>
+              <li><a href="{{ post.url }}"><strong>{{ post.title }}</strong> {{ post.excerpt }} {{ post }}</a></li>
             {% endfor %}
           </ul>
         {% endif %}
