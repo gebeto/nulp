@@ -247,7 +247,9 @@ class Program {
 ```
 
 З метою тестування ми створили ще один метод - `Color_Message`, який виводить те ж саме повідомлення тільки червоним кольором. Для першого делегата створюється окрема змінна. Але великої різниці між передачею обох в методів `account.RegisterHandler` немає: просто в одному випадку ми відразу передаємо об'єкт, створюваний конструктором
-`account.RegisterHandler(new Account.AccountStateHandler(Show_Message));`.
+```cs
+account.RegisterHandler(new Account.AccountStateHandler(Show_Message));
+```
 
 У другому випадку створюємо змінну і її вже передаємо в метод `account.RegisterHandler(colorDelegate)`.
 В рядку `account.UnregisterHandler(colorDelegate);` цей метод видаляється зі списку делегата, тому цей метод більше не буде спрацьовувати.
