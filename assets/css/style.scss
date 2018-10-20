@@ -6,6 +6,7 @@
 
 body {
   background-color: #fff;
+  margin: 0;
 }
 
 .wrapper {
@@ -14,6 +15,11 @@ body {
 
 header {
   width: 200px;
+  
+  @media print, screen and (max-width: 960px) {
+    width: 100%;
+    text-align: center;
+  }
   
   img {
     padding: 40px;
