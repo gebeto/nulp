@@ -36,4 +36,11 @@ section {
     width: 100%;
   }
   width: 600px;
+  
+  p>code.highlighter-rouge {
+    background: rgba(27,31,35,0.05);
+    padding: 1px 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
 }
