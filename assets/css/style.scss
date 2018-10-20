@@ -8,6 +8,10 @@ body {
   background-color: #fff;
 }
 
+.wrapper {
+  width: 960px;
+}
+
 header {
   width: 200px;
   
@@ -18,5 +22,8 @@ header {
 }
 
 section {
+  @media print, screen and (max-width: 960px) {
+    width: 100%;
+  }
   width: 600px;
 }
