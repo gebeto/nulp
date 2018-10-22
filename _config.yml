@@ -4,3 +4,4 @@ google_analytics: UA-120902316-2
 markdown: kramdown
 gems:
   - jekyll-sitemap
+lang: uk_UA
