@@ -2,6 +2,6 @@ theme: jekyll-theme-minimal
 logo: https://upload.wikimedia.org/wikipedia/commons/d/de/Nulp_logo_ukr.jpg
 google_analytics: UA-120902316-2
 markdown: kramdown
+lang: uk_UA
 gems:
   - jekyll-sitemap
-lang: uk_UA
