@@ -1,4 +1,4 @@
-<h1 align="center"> Лекція 1: Мова C # і платформа .NET </h1>
+﻿<h1 align="center"> Лекція 1: Мова C # і платформа .NET </h1>
 
 <h2 align="center"> Зміст </h2>
 
