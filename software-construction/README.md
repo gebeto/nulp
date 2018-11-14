@@ -5,7 +5,8 @@
 2. [Лекція 2: Делегати і події](info/lab-2.md)
 
 ### Допоміжна інформація
- - Плейлист по LINQ на YouTube - ([LINQ. Практическое руководство](https://www.youtube.com/playlist?list=PL-ss7IpVOiB6Z3Pn8Paapr5qwT2lqS14D))
+ - Плейлист по LINQ на YouTube - ![LINQ. Практическое руководство](https://www.youtube.com/playlist?list=PL-ss7IpVOiB6Z3Pn8Paapr5qwT2lqS14D)
+ - Плейлист по LINQ на YouTube - <a target="_blank" href="https://www.youtube.com/playlist?list=PL-ss7IpVOiB6Z3Pn8Paapr5qwT2lqS14D">LINQ. Практическое руководство</a>
 
 ## VNS
  - [Старий](http://vns.lp.edu.ua/course/view.php?id=8650) `заходимо під своїм акаунтом`
