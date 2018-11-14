@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace lab_1
 {
     class Program
@@ -7,8 +8,8 @@ namespace lab_1
         static void Main(string[] args)
         {
             Game game = new Game();
-            game.onStart += (object sender, EventArgs e) => Console.WriteLine("Game Started.");
-            game.onStop += (object sender, EventArgs e) => Console.WriteLine("Game Stopped.");
+            game.onStart += (object sender, GameStateEventArgs e) => Console.WriteLine("Game Started.");
+            game.onStop += (object sender, GameStateEventArgs e) => Console.WriteLine("Game Stopped.");
 
             Console.Clear();
 
