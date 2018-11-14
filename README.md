@@ -1,8 +1,8 @@
 # НУЛП
 
 
-###  - [Старий VNS](http://vns.lp.edu.ua)
-###  - [Новий VNS](http://vns.lpnu.ua)
+### [Старий VNS](http://vns.lp.edu.ua)
+### [Новий VNS](http://vns.lpnu.ua)
 
 
 ## ПЗ-31з
