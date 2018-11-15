@@ -6,7 +6,7 @@ namespace lab_1
     {
         Started,
         Pause,
-        Playing,
+        Play,
         Stop,
     }
 }
