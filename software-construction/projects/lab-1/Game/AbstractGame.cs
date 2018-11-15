@@ -22,29 +22,32 @@ namespace lab_1 {
 
         public void start()
         {
-            this.changeState(this.onStart, GameState.Progress);
+            this.changeState(GameState.Started, this.onStart);
         }
 
         public void pause()
         {
-            this.changeState(this.onPause, GameState.Pause);
+            this.changeState(GameState.Pause, this.onPause);
         }
 
         public void stop()
         {
-            this.changeState(this.onStop, GameState.Stop);
+            this.changeState(GameState.Stop, this.onStop);
         }
 
-        private void changeState(GameStateEventHandler handler, GameState state)
+        protected void changeState(GameState state, GameStateEventHandler handler)
         {
             this.gameState = state;
+            GameStateEventArgs gameStateEventArgs = new GameStateEventArgs(this.gameState);
+
             if (handler != null)
             {
-                handler(this, new GameStateEventArgs(state));
+                handler(this, gameStateEventArgs);
             }
+
             if (onStateChanged != null)
             {
-                onStateChanged(this, new GameStateEventArgs(state));
+                onStateChanged(this, gameStateEventArgs);
             }
         }
     }

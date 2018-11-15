@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 namespace lab_1
 {
-    public class GameMenu {
-        public event EventHandler onChange;
+    public class GameMenu : IScreen {
+        public event GameMenuItemChangedHandler onChange;
 
         private int highlighted;
         
@@ -47,6 +47,7 @@ namespace lab_1
             {
                 this.activeItem = this.highlighted;
                 this.items[this.activeItem].select();
+                this.change();
                 return true;
             }
             else if (keyCode == 40 || keyCode == 83)
@@ -71,5 +72,12 @@ namespace lab_1
             // Console.ReadKey();
             return false;
         }
+
+        private void change() {
+            if (this.onChange != null)
+            {
+                this.onChange(this, new GameMenuItemChangedArgs(this.items[this.activeItem]));
+            }
+        } 
     }
 }
