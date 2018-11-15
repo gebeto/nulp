@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace lab_1
+namespace MyGame
 {
     public class GameMenu : IScreen {
         public event GameMenuItemChangedHandler onChange;

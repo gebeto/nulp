@@ -1,6 +1,6 @@
 using System;
 
-namespace lab_1 {
+namespace MyGame {
 
     public abstract class AbstractGame : IGame
     {

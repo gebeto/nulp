@@ -1,7 +1,7 @@
 using System;
 
 
-namespace lab_1 {
+namespace MyGame {
     public class GameMenuItemChangedArgs : EventArgs {
         public GameMenuItem Item { get; private set; }
 

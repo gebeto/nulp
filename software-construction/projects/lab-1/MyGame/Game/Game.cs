@@ -1,6 +1,6 @@
 using System;
 
-namespace lab_1
+namespace MyGame
 {
     public class Game : AbstractGame {
         public bool stopped;

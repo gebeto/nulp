@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace lab_1
+namespace MyGame
 {
     interface IScreen {
         void render();
