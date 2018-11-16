@@ -1,11 +1,14 @@
 using System;
 
 
-namespace MyGame {
-    public class GameMenuItemChangedArgs : EventArgs {
+namespace Game
+{
+    public class GameMenuItemChangedArgs : EventArgs
+    {
         public GameMenuItem Item { get; private set; }
 
-        public GameMenuItemChangedArgs(GameMenuItem item) {
+        public GameMenuItemChangedArgs(GameMenuItem item)
+        {
             this.Item = item;
         }
     }

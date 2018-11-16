@@ -1,8 +1,9 @@
 using System;
 
-namespace MyGame
+namespace Game
 {
-    public class Game : AbstractGame {
+    public class Game : AbstractGame
+    {
         public bool stopped;
 
         public Game() {

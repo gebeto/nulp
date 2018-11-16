@@ -1,6 +1,6 @@
 using System;
 
-namespace MyGame
+namespace Game
 {
     public class GameStateEventArgs : EventArgs
     {

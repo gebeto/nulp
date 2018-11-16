@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 
 
-namespace MyGame
+namespace Game
 {
-    public class GameMenu : IScreen {
+    public class GameMenu : IScreen
+    {
         public event GameMenuItemChangedHandler onChange;
 
         private int highlighted;
