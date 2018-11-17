@@ -34,7 +34,6 @@ namespace Game
                 }
             );
 
-
             game.start();
             Console.ReadKey();
         }
