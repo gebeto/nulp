@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.PointF
+import android.os.Parcelable
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
@@ -20,7 +21,6 @@ class BoxDrawingView : View {
     private val mBackgroundPaint: Paint = Paint();
 
     constructor(context: Context, attributes: AttributeSet?) : super(context, attributes!!) {
-//        mBoxPaint.color = Color.parseColor("22ff0000")
         mBoxPaint.setARGB(64, 255, 0, 0);
         mBackgroundPaint.setARGB(255, 255, 255, 255);
     }
