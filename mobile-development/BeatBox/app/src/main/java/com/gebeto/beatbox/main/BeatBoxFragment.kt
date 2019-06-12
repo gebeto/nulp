@@ -10,12 +10,10 @@ import com.gebeto.beatbox.R
 import com.gebeto.beatbox.sound.*
 import kotlinx.android.synthetic.main.fragment_beat_box.*
 
-private const val SPAN_COUNT = 3
+private const val SPAN_COUNT = 4
 
 class BeatBoxFragment : Fragment() {
-
     private lateinit var adapter: SoundAdapter
-
     private lateinit var beatBox: BeatBoxModel
 
     companion object {
