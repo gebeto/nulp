@@ -3,6 +3,8 @@
 #include "misc.h"
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_rcc.h"
+#include <stdbool.h>
+
 
 #define GREEN GPIO_Pin_12
 #define ORANGE GPIO_Pin_13

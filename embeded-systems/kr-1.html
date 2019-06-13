@@ -24,13 +24,18 @@
 		const pin3 = document.getElementById('pin-3');
 
 		function createPortString(index, pins) {
-			const port = `GPIO_InitTypeDef GPIO_Init_PORT${index};
-GPIO_Init_PORT${index}.GPIO_Pin = ${pins};
-GPIO_Init_PORT${index}.GPIO_Mode = GPIO_Mode_OUT;
-GPIO_Init_PORT${index}.GPIO_Speed = GPIO_Speed_50MHz;
-GPIO_Init_PORT${index}.GPIO_OType = GPIO_OType_PP;
-GPIO_Init_PORT${index}.GPIO_PuPd = GPIO_PuPd_NOPULL;
-GPIO_Init(GPIOD, &GPIO_Init_PORT${index});
+// 			const port = `GPIO_InitTypeDef GPIO_Init_PORT${index};
+// GPIO_Init_PORT${index}.GPIO_Pin = ${pins};
+// GPIO_Init_PORT${index}.GPIO_Mode = GPIO_Mode_OUT;
+// GPIO_Init_PORT${index}.GPIO_Speed = GPIO_Speed_50MHz;
+// GPIO_Init_PORT${index}.GPIO_OType = GPIO_OType_PP;
+// GPIO_Init_PORT${index}.GPIO_PuPd = GPIO_PuPd_NOPULL;
+// GPIO_Init(GPIOD, &GPIO_Init_PORT${index});
+// `;
+			const port = `RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;
+GPIOD->MODER = 0x${pins};
+GPIOD->OTYPER = 0;
+GPIOD->OSPEEDR = 0;	
 `;
 			return port;
 		}
@@ -41,9 +46,7 @@ GPIO_Init(GPIOD, &GPIO_Init_PORT${index});
 	}
 
 	function getPinsBy(str, proc) {
-		return getIndexesByString(str)
-			.map(el => `GPIO_Pin_${proc(el)}`)
-			.join('|');
+		return getIndexesByString(str).map(proc);
 	}
 
 	function getPins1() {
@@ -53,7 +56,7 @@ GPIO_Init(GPIOD, &GPIO_Init_PORT${index});
 
 	function getPins2() {
 		const value = document.getElementById("sname").value;
-		return getPinsBy(value, index => index);
+		return getPinsBy(value, index => Math.round(index / 2));
 	}
 
 	function getPins3() {
@@ -61,7 +64,10 @@ GPIO_Init(GPIOD, &GPIO_Init_PORT${index});
 		const valueSname = document.getElementById("sname").value;
 		const nameIndexes = getIndexesByString(valueName);
 		const snameIndexes = getIndexesByString(valueSname);
-		return getPinsBy(value, index => index);
+		const indexes = nameIndexes.filter(
+			(el, index) => snameIndexes.indexOf(el) > -1 && nameIndexes.indexOf(el) === index
+		).map(el => Math.round(el / 2));
+		return indexes;
 	}
 
 	document.getElementById('forma').addEventListener('submit', function onSubmit(e) {

@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\CMSIS\Device\ST\STM32F4xx\Source;.\CMSIS\Device\ST\STM32F4xx\Include;.\STM32F4xx_StdPeriph_Driver;.\STM32F4xx_StdPeriph_Driver\inc;.\STM32F4xx_StdPeriph_Driver\src;.\User;..\display;C:\Keil_v5\ARM\Pack\ARM\CMSIS\4.1.0\CMSIS\Include;D:\Keil_v5\ARM\Pack\Keil\STM32L4xx_DFP\1.5.0\Drivers\CMSIS\Include;E:\programs\arm\ARM\CMSIS\5.5.1\CMSIS\Core\Include</IncludePath>
+              <IncludePath>.\CMSIS\Device\ST\STM32F4xx\Source;.\CMSIS\Device\ST\STM32F4xx\Include;.\STM32F4xx_StdPeriph_Driver;.\STM32F4xx_StdPeriph_Driver\inc;.\STM32F4xx_StdPeriph_Driver\src;.\User;..\display;C:\Keil_v5\ARM\Pack\ARM\CMSIS\4.1.0\CMSIS\Include;D:\Keil_v5\ARM\Pack\Keil\STM32L4xx_DFP\1.5.0\Drivers\CMSIS\Include;E:\programs\arm\ARM\CMSIS\5.5.1\CMSIS\Core\Include;C:\Apps\Keil\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>

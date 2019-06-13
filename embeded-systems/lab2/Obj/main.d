@@ -1,11 +1,11 @@
 .\obj\main.o: User\main.c
 .\obj\main.o: .\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
-.\obj\main.o: E:\programs\arm\ARM\CMSIS\5.5.1\CMSIS\Core\Include\core_cm4.h
-.\obj\main.o: E:\programs\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\obj\main.o: E:\programs\arm\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_version.h
-.\obj\main.o: E:\programs\arm\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_compiler.h
-.\obj\main.o: E:\programs\arm\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_armcc.h
-.\obj\main.o: E:\programs\arm\ARM\CMSIS\5.5.1\CMSIS\Core\Include\mpu_armv7.h
+.\obj\main.o: C:\Apps\Keil\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\core_cm4.h
+.\obj\main.o: C:\Apps\Keil\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\obj\main.o: C:\Apps\Keil\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_version.h
+.\obj\main.o: C:\Apps\Keil\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_compiler.h
+.\obj\main.o: C:\Apps\Keil\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_armcc.h
+.\obj\main.o: C:\Apps\Keil\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\mpu_armv7.h
 .\obj\main.o: .\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h
 .\obj\main.o: .\STM32F4xx_StdPeriph_Driver\stm32f4xx_conf.h
 .\obj\main.o: .\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h
@@ -35,3 +35,4 @@
 .\obj\main.o: .\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dac.h
 .\obj\main.o: .\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h
 .\obj\main.o: .\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h
+.\obj\main.o: C:\Apps\Keil\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
