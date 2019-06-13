@@ -9,15 +9,15 @@
 #define RED GPIO_Pin_14
 #define BLUE GPIO_Pin_15
 
-int currIndex = 0;
 
 void InitLEDS(void);
-void InitButton(void);
 void InitInterrupt(void);
+void updateActiveLeds(void);
 
 const uint16_t LEDS[4] = {GREEN, ORANGE, RED, BLUE};
-uint16_t diod_delay = 1000;
 uint16_t delay_c = 0;
+
+bool clicked = false;
 
 void SysTick_Handler(void){
 	if(delay_c > 0)
@@ -29,24 +29,19 @@ void delay_ms(uint16_t delay_t){
 	while(delay_c){};
 }
 
-int main(void) {
-	SysTick_Config(SystemCoreClock/1000);
-	InitLEDS();
-	// InitButton();
-	InitInterrupt();
-	
-	GPIO_SetBits(GPIOD, LEDS[currIndex]);
-	while(1) {
-		
-	};
+void updateActiveLeds() {
+	if (clicked) {
+		GPIO_ResetBits(GPIOD, ORANGE | RED);
+		GPIO_SetBits(GPIOD, GREEN | BLUE);
+	} else {
+		GPIO_ResetBits(GPIOD, GREEN | BLUE);
+		GPIO_SetBits(GPIOD, ORANGE | RED);
+	}
 }
 
 void EXTI0_IRQHandler(void) {
-	GPIO_ResetBits(GPIOD, LEDS[currIndex]);
-	currIndex++;
-	if (currIndex > 3) currIndex = 0; 
-	GPIO_SetBits(GPIOD, LEDS[currIndex]);
-	
+	clicked = !clicked;
+	updateActiveLeds();	
 	EXTI_ClearITPendingBit(EXTI_Line0);
 }
 
@@ -58,16 +53,6 @@ void InitLEDS(void) {
 	gpio_ledInitStruct.GPIO_OType = GPIO_OType_PP;
 	gpio_ledInitStruct.GPIO_Speed = GPIO_Speed_2MHz;
 	GPIO_Init(GPIOD, &gpio_ledInitStruct);
-}
-
-void InitButton(void) {
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-	GPIO_InitTypeDef gpio_buttonInitStruct;
-	gpio_buttonInitStruct.GPIO_Pin = GPIO_Pin_0;
-	gpio_buttonInitStruct.GPIO_Mode = GPIO_Mode_IN;
-	gpio_buttonInitStruct.GPIO_OType = GPIO_OType_PP;
-	gpio_buttonInitStruct.GPIO_Speed = GPIO_Speed_2MHz;
-	GPIO_Init(GPIOA, &gpio_buttonInitStruct);
 }
 
 void InitInterrupt(void) {
@@ -82,8 +67,15 @@ void InitInterrupt(void) {
 
 	nvic_initStruct.NVIC_IRQChannel = EXTI0_IRQn;
 	nvic_initStruct.NVIC_IRQChannelPreemptionPriority = 1;
-	nvic_initStruct.NVIC_IRQChannelPreemptionPriority = 1;
 	nvic_initStruct.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&nvic_initStruct);
 }
 
+int main(void) {
+	SysTick_Config(SystemCoreClock/1000);
+	InitLEDS();
+	InitInterrupt();
+	
+	updateActiveLeds();
+	while(1) {};
+}

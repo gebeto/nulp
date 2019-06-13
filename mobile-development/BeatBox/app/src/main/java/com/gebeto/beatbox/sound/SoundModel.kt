@@ -1,7 +1,7 @@
 package com.gebeto.beatbox.sound
 
 private const val SEPARATOR = "/"
-private const val EXTENSION = ".wav"
+private const val EXTENSION = ".mp3"
 private const val EMPTY = ""
 private const val POSITION = 1
 
