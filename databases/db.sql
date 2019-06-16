@@ -109,20 +109,13 @@ GO
 SET quoted_identifier ON
 GO
 CREATE VIEW [dbo].[vCustomersDelivery] AS 
-SELECT cus.cname, 
-       cus.surname, 
-       cus.phonenumber, 
-       cus.id_customer, 
-       ord.customer_id, 
-       de.data, 
-       de.done, 
-       de.order_id 
-FROM   customer cus 
-JOIN   order_d ord 
-ON     cus.id_customer = ord.customer_id 
-JOIN   delivery de 
-ON     de.order_id = ord.id_order 
-WHERE  done = 'true';
+	SELECT cus.cname, cus.surname, cus.phonenumber, cus.id_customer, ord.customer_id, de.data, de.done, de.order_id 
+	FROM   customer cus 
+	JOIN   order_d ord 
+	ON     cus.id_customer = ord.customer_id 
+	JOIN   delivery de 
+	ON     de.order_id = ord.id_order 
+	WHERE  done = 'true';
 GO 
 
 
@@ -267,39 +260,29 @@ CREATE TABLE [dbo].[user]
 	CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ( [id] ASC )WITH (pad_index = OFF, statistics_norecompute = OFF, ignore_dup_key = OFF, allow_row_locks = on, allow_page_locks = on) ON [PRIMARY]
 )
 ON [PRIMARY]
+
 GO
-ALTER TABLE [dbo].[customer] WITH CHECK ADD CONSTRAINT [FK_Customer_City] FOREIGN KEY([city_id]) REFERENCES [dbo].[city] ([id_city]) 
-ON DELETE CASCADE
+ALTER TABLE [dbo].[customer] WITH CHECK ADD CONSTRAINT [FK_Customer_City] FOREIGN KEY([city_id]) REFERENCES [dbo].[city] ([id_city]) ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[customer] CHECK CONSTRAINT [FK_Customer_City]
 GO
-ALTER TABLE [dbo].[delivery] WITH CHECK ADD CONSTRAINT [FK_Delivery_Delivery_Type] FOREIGN KEY([typedelivery_id]) REFERENCES [dbo].[delivery_type] ([id_deliverytype]) 
-ON 
-DELETE CASCADE
+ALTER TABLE [dbo].[delivery] WITH CHECK ADD CONSTRAINT [FK_Delivery_Delivery_Type] FOREIGN KEY([typedelivery_id]) REFERENCES [dbo].[delivery_type] ([id_deliverytype]) ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[delivery] CHECK CONSTRAINT [FK_Delivery_Delivery_Type]
 GO
-ALTER TABLE [dbo].[delivery] WITH CHECK ADD CONSTRAINT [FK_Delivery_Order] FOREIGN KEY([order_id]) REFERENCES [dbo].[order_d] ([id_order]) 
-ON 
-DELETE CASCADE
+ALTER TABLE [dbo].[delivery] WITH CHECK ADD CONSTRAINT [FK_Delivery_Order] FOREIGN KEY([order_id]) REFERENCES [dbo].[order_d] ([id_order]) ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[delivery] CHECK CONSTRAINT [FK_Delivery_Order]
 GO
-ALTER TABLE [dbo].[door] WITH CHECK ADD CONSTRAINT [FK_Door_Color] FOREIGN KEY([color_id]) REFERENCES [dbo].[color] ([id_color]) 
-ON 
-DELETE CASCADE
+ALTER TABLE [dbo].[door] WITH CHECK ADD CONSTRAINT [FK_Door_Color] FOREIGN KEY([color_id]) REFERENCES [dbo].[color] ([id_color]) ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[door] CHECK CONSTRAINT [FK_Door_Color]
 GO
-ALTER TABLE [dbo].[door] WITH CHECK ADD CONSTRAINT [FK_Door_Material] FOREIGN KEY([material_id]) REFERENCES [dbo].[material] ([id_material]) 
-ON 
-DELETE CASCADE
+ALTER TABLE [dbo].[door] WITH CHECK ADD CONSTRAINT [FK_Door_Material] FOREIGN KEY([material_id]) REFERENCES [dbo].[material] ([id_material]) ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[door] CHECK CONSTRAINT [FK_Door_Material]
 GO
-ALTER TABLE [dbo].[door_parts] WITH CHECK ADD CONSTRAINT [FK_Door_Parts_Door] FOREIGN KEY([door_id]) REFERENCES [dbo].[door] ([id_door]) 
-ON 
-DELETE CASCADE
+ALTER TABLE [dbo].[door_parts] WITH CHECK ADD CONSTRAINT [FK_Door_Parts_Door] FOREIGN KEY([door_id]) REFERENCES [dbo].[door] ([id_door]) ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[door_parts] CHECK CONSTRAINT [FK_Door_Parts_Door]
 GO
@@ -307,39 +290,27 @@ ALTER TABLE [dbo].[door_parts] WITH CHECK ADD CONSTRAINT [FK_Door_Parts_Parts] F
 GO
 ALTER TABLE [dbo].[door_parts] CHECK CONSTRAINT [FK_Door_Parts_Parts]
 GO
-ALTER TABLE [dbo].[order_d] WITH CHECK ADD CONSTRAINT [FK_Order_Customer] FOREIGN KEY([customer_id]) REFERENCES [dbo].[customer] ([id_customer]) 
-ON 
-DELETE CASCADE
+ALTER TABLE [dbo].[order_d] WITH CHECK ADD CONSTRAINT [FK_Order_Customer] FOREIGN KEY([customer_id]) REFERENCES [dbo].[customer] ([id_customer]) ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[order_d] CHECK CONSTRAINT [FK_Order_Customer]
 GO
-ALTER TABLE [dbo].[order_d] WITH CHECK ADD CONSTRAINT [FK_Order_Door] FOREIGN KEY([door_id]) REFERENCES [dbo].[door] ([id_door]) 
-ON 
-DELETE CASCADE
+ALTER TABLE [dbo].[order_d] WITH CHECK ADD CONSTRAINT [FK_Order_Door] FOREIGN KEY([door_id]) REFERENCES [dbo].[door] ([id_door]) ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[order_d] CHECK CONSTRAINT [FK_Order_Door]
 GO
-ALTER TABLE [dbo].[order_d] WITH CHECK ADD CONSTRAINT [FK_Order_Employee] FOREIGN KEY([employee_id]) REFERENCES [dbo].[employee] ([id_employee]) 
-ON 
-DELETE CASCADE
+ALTER TABLE [dbo].[order_d] WITH CHECK ADD CONSTRAINT [FK_Order_Employee] FOREIGN KEY([employee_id]) REFERENCES [dbo].[employee] ([id_employee]) ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[order_d] CHECK CONSTRAINT [FK_Order_Employee]
 GO
-ALTER TABLE [dbo].[parts] WITH CHECK ADD CONSTRAINT [FK_Parts_Color] FOREIGN KEY([color_id]) REFERENCES [dbo].[color] ([id_color]) 
-ON 
-DELETE CASCADE
+ALTER TABLE [dbo].[parts] WITH CHECK ADD CONSTRAINT [FK_Parts_Color] FOREIGN KEY([color_id]) REFERENCES [dbo].[color] ([id_color]) ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[parts] CHECK CONSTRAINT [FK_Parts_Color]
 GO
-ALTER TABLE [dbo].[parts] WITH CHECK ADD CONSTRAINT [FK_Parts_Material] FOREIGN KEY([material_id]) REFERENCES [dbo].[material] ([id_material]) 
-ON 
-DELETE CASCADE
+ALTER TABLE [dbo].[parts] WITH CHECK ADD CONSTRAINT [FK_Parts_Material] FOREIGN KEY([material_id]) REFERENCES [dbo].[material] ([id_material]) ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[parts] CHECK CONSTRAINT [FK_Parts_Material]
 GO
-ALTER TABLE [dbo].[user] WITH CHECK ADD CONSTRAINT [FK_User_Role] FOREIGN KEY([roleid]) REFERENCES [dbo].[role] ([id]) 
-ON 
-DELETE CASCADE
+ALTER TABLE [dbo].[user] WITH CHECK ADD CONSTRAINT [FK_User_Role] FOREIGN KEY([roleid]) REFERENCES [dbo].[role] ([id]) ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[user] CHECK CONSTRAINT [FK_User_Role]
 GO
