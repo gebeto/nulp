@@ -1,12 +1,12 @@
 USE [DBofDoors]
-go 
+GO 
 
 
 /****** Object: Table [dbo].[Customer] Script Date: 02.05.2018 13:30:14 ******/
 SET ansi_nulls ON
-go
+GO
 SET quoted_identifier ON
-go
+GO
 CREATE TABLE [dbo].[customer] 
 ( 
 	[id_customer] [INT] NOT NULL, 
@@ -25,7 +25,7 @@ GO
 SET ansi_nulls ON
 GO
 SET quoted_identifier ON
-go
+GO
 CREATE TABLE [dbo].[order_d] 
 (
 	[id_order] [INT] NOT NULL, 
@@ -46,9 +46,9 @@ GO
 
 /****** Object: Table [dbo].[Door] Script Date: 02.05.2018 13:30:16 ******/
 SET ansi_nulls ON
-go
+GO
 SET quoted_identifier ON
-go
+GO
 CREATE TABLE [dbo].[door] 
 (
 	[id_door] [INT] NOT NULL, 
@@ -59,14 +59,14 @@ CREATE TABLE [dbo].[door]
 	CONSTRAINT [PK_Door] PRIMARY KEY CLUSTERED ( [id_door] ASC )WITH (pad_index = OFF, statistics_norecompute = OFF, ignore_dup_key = OFF, allow_row_locks = on, allow_page_locks = on) ON [PRIMARY]
 )
 ON [PRIMARY]
-go
+GO
 
 
 /****** Object: View [dbo].[vCustomer] Script Date: 02.05.2018 13:30:16 ******/
 SET ansi_nulls ON
-go
+GO
 SET quoted_identifier ON
-go
+GO
 CREATE VIEW [dbo].[vCustomer] AS 
 SELECT cus.id_customer, 
        cus.cname, 
@@ -82,14 +82,14 @@ ON     cus.id_customer=ord.customer_id
 JOIN   door DO 
 ON     do.id_door=ord.door_id 
 WHERE  do.price > 50
-go 
+GO 
 
 
 /****** Object: Table [dbo].[Delivery] Script Date: 02.05.2018 13:30:16 ******/
 SET ansi_nulls ON
-go
+GO
 SET quoted_identifier ON
-go
+GO
 CREATE TABLE [dbo].[delivery] 
 (
 	[id_delivery] [INT] NOT NULL, 
@@ -105,9 +105,9 @@ GO
 
 /****** Object: View [dbo].[vCustomersDelivery] Script Date: 02.05.2018 13:30:16 ******/
 SET ansi_nulls ON
-go
+GO
 SET quoted_identifier ON
-go
+GO
 CREATE VIEW [dbo].[vCustomersDelivery] AS 
 SELECT cus.cname, 
        cus.surname, 
@@ -123,14 +123,14 @@ ON     cus.id_customer = ord.customer_id
 JOIN   delivery de 
 ON     de.order_id = ord.id_order 
 WHERE  done = 'true';
-go 
+GO 
 
 
 /****** Object: Table [dbo].[City] Script Date: 02.05.2018 13:30:16 ******/
 SET ansi_nulls ON
-go
+GO
 SET quoted_identifier ON
-go
+GO
 CREATE TABLE [dbo].[city] 
 (
 	[id_city] [INT] NOT NULL, 
@@ -144,9 +144,9 @@ GO
 
 /****** Object: Table [dbo].[Color] Script Date: 02.05.2018 13:30:16 ******/
 SET ansi_nulls ON
-go
+GO
 SET quoted_identifier ON
-go
+GO
 CREATE TABLE [dbo].[color] 
 (
 	[id_color] [INT] NOT NULL, 
@@ -159,9 +159,9 @@ GO
 
 /****** Object: Table [dbo].[Delivery_Type] Script Date: 02.05.2018 13:30:16 ******/
 SET ansi_nulls ON
-go
+GO
 SET quoted_identifier ON
-go
+GO
 CREATE TABLE [dbo].[delivery_type] 
 (
 	[id_deliverytype] [INT] NOT NULL, 
@@ -174,9 +174,9 @@ GO
 
 /****** Object: Table [dbo].[Door_Parts] Script Date: 02.05.2018 13:30:16 ******/
 SET ansi_nulls ON
-go
+GO
 SET quoted_identifier ON
-go
+GO
 CREATE TABLE [dbo].[door_parts] 
 (
 	[id_parts] [INT] NOT NULL, 
@@ -191,9 +191,9 @@ GO
 
 /****** Object: Table [dbo].[Employee] Script Date: 02.05.2018 13:30:16 ******/
 SET ansi_nulls ON
-go
+GO
 SET quoted_identifier ON
-go
+GO
 CREATE TABLE [dbo].[employee] 
 (
 	[id_employee] [INT] NOT NULL, 
@@ -207,9 +207,9 @@ GO
 
 /****** Object: Table [dbo].[Material] Script Date: 02.05.2018 13:30:16 ******/
 SET ansi_nulls ON
-go
+GO
 SET quoted_identifier ON
-go
+GO
 CREATE TABLE [dbo].[material] 
 (
 	[id_material] [INT] NOT NULL, 
@@ -222,9 +222,9 @@ GO
 
 /****** Object: Table [dbo].[Parts] Script Date: 02.05.2018 13:30:17 ******/
 SET ansi_nulls ON
-go
+GO
 SET quoted_identifier ON
-go
+GO
 CREATE TABLE [dbo].[parts] 
 (
 	[id_parts] [INT] NOT NULL, 
@@ -240,9 +240,9 @@ GO
 
 /****** Object: Table [dbo].[Role] Script Date: 02.05.2018 13:30:17 ******/
 SET ansi_nulls ON
-go
+GO
 SET quoted_identifier ON
-go
+GO
 CREATE TABLE [dbo].[role] 
 (
 	[id] [INT] IDENTITY(1,1) NOT NULL, 
@@ -255,9 +255,9 @@ GO
 
 /****** Object: Table [dbo].[User] Script Date: 02.05.2018 13:30:17 ******/
 SET ansi_nulls ON
-go
+GO
 SET quoted_identifier ON
-go
+GO
 CREATE TABLE [dbo].[user] 
 (
 	[id] [INT] IDENTITY(1,1) NOT NULL, 
@@ -267,79 +267,79 @@ CREATE TABLE [dbo].[user]
 	CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ( [id] ASC )WITH (pad_index = OFF, statistics_norecompute = OFF, ignore_dup_key = OFF, allow_row_locks = on, allow_page_locks = on) ON [PRIMARY]
 )
 ON [PRIMARY]
-go
+GO
 ALTER TABLE [dbo].[customer] WITH CHECK ADD CONSTRAINT [FK_Customer_City] FOREIGN KEY([city_id]) REFERENCES [dbo].[city] ([id_city]) 
 ON DELETE CASCADE
-go
+GO
 ALTER TABLE [dbo].[customer] CHECK CONSTRAINT [FK_Customer_City]
-go
+GO
 ALTER TABLE [dbo].[delivery] WITH CHECK ADD CONSTRAINT [FK_Delivery_Delivery_Type] FOREIGN KEY([typedelivery_id]) REFERENCES [dbo].[delivery_type] ([id_deliverytype]) 
 ON 
 DELETE CASCADE
-go
+GO
 ALTER TABLE [dbo].[delivery] CHECK CONSTRAINT [FK_Delivery_Delivery_Type]
-go
+GO
 ALTER TABLE [dbo].[delivery] WITH CHECK ADD CONSTRAINT [FK_Delivery_Order] FOREIGN KEY([order_id]) REFERENCES [dbo].[order_d] ([id_order]) 
 ON 
 DELETE CASCADE
-go
+GO
 ALTER TABLE [dbo].[delivery] CHECK CONSTRAINT [FK_Delivery_Order]
-go
+GO
 ALTER TABLE [dbo].[door] WITH CHECK ADD CONSTRAINT [FK_Door_Color] FOREIGN KEY([color_id]) REFERENCES [dbo].[color] ([id_color]) 
 ON 
 DELETE CASCADE
-go
+GO
 ALTER TABLE [dbo].[door] CHECK CONSTRAINT [FK_Door_Color]
-go
+GO
 ALTER TABLE [dbo].[door] WITH CHECK ADD CONSTRAINT [FK_Door_Material] FOREIGN KEY([material_id]) REFERENCES [dbo].[material] ([id_material]) 
 ON 
 DELETE CASCADE
-go
+GO
 ALTER TABLE [dbo].[door] CHECK CONSTRAINT [FK_Door_Material]
-go
+GO
 ALTER TABLE [dbo].[door_parts] WITH CHECK ADD CONSTRAINT [FK_Door_Parts_Door] FOREIGN KEY([door_id]) REFERENCES [dbo].[door] ([id_door]) 
 ON 
 DELETE CASCADE
-go
+GO
 ALTER TABLE [dbo].[door_parts] CHECK CONSTRAINT [FK_Door_Parts_Door]
-go
+GO
 ALTER TABLE [dbo].[door_parts] WITH CHECK ADD CONSTRAINT [FK_Door_Parts_Parts] FOREIGN KEY([part_id]) REFERENCES [dbo].[parts] ([id_parts])
-go
+GO
 ALTER TABLE [dbo].[door_parts] CHECK CONSTRAINT [FK_Door_Parts_Parts]
-go
+GO
 ALTER TABLE [dbo].[order_d] WITH CHECK ADD CONSTRAINT [FK_Order_Customer] FOREIGN KEY([customer_id]) REFERENCES [dbo].[customer] ([id_customer]) 
 ON 
 DELETE CASCADE
-go
+GO
 ALTER TABLE [dbo].[order_d] CHECK CONSTRAINT [FK_Order_Customer]
-go
+GO
 ALTER TABLE [dbo].[order_d] WITH CHECK ADD CONSTRAINT [FK_Order_Door] FOREIGN KEY([door_id]) REFERENCES [dbo].[door] ([id_door]) 
 ON 
 DELETE CASCADE
-go
+GO
 ALTER TABLE [dbo].[order_d] CHECK CONSTRAINT [FK_Order_Door]
-go
+GO
 ALTER TABLE [dbo].[order_d] WITH CHECK ADD CONSTRAINT [FK_Order_Employee] FOREIGN KEY([employee_id]) REFERENCES [dbo].[employee] ([id_employee]) 
 ON 
 DELETE CASCADE
-go
+GO
 ALTER TABLE [dbo].[order_d] CHECK CONSTRAINT [FK_Order_Employee]
-go
+GO
 ALTER TABLE [dbo].[parts] WITH CHECK ADD CONSTRAINT [FK_Parts_Color] FOREIGN KEY([color_id]) REFERENCES [dbo].[color] ([id_color]) 
 ON 
 DELETE CASCADE
-go
+GO
 ALTER TABLE [dbo].[parts] CHECK CONSTRAINT [FK_Parts_Color]
-go
+GO
 ALTER TABLE [dbo].[parts] WITH CHECK ADD CONSTRAINT [FK_Parts_Material] FOREIGN KEY([material_id]) REFERENCES [dbo].[material] ([id_material]) 
 ON 
 DELETE CASCADE
-go
+GO
 ALTER TABLE [dbo].[parts] CHECK CONSTRAINT [FK_Parts_Material]
-go
+GO
 ALTER TABLE [dbo].[user] WITH CHECK ADD CONSTRAINT [FK_User_Role] FOREIGN KEY([roleid]) REFERENCES [dbo].[role] ([id]) 
 ON 
 DELETE CASCADE
-go
+GO
 ALTER TABLE [dbo].[user] CHECK CONSTRAINT [FK_User_Role]
-go
+GO
