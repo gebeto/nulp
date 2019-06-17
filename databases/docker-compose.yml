@@ -22,4 +22,5 @@ services:
       - "80:80"
     volumes:
       - "./pgadmin-servers.json:/pgadmin4/servers.json:ro"
+      - "./db/storage:/var/lib/pgadmin/storage"
     env_file: .env
