@@ -1,0 +1,20 @@
+version: '3'
+services:
+  db:
+    build: db
+    restart: always
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - ./db:/db
+    env_file: .env
+  server:
+    build: server
+    ports:
+      - "3000:3000"
+    # links:
+    #   - "db:database"
+    env_file: .env
+    volumes:
+      - ./server:/server
+    command: yarn start
