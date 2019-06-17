@@ -1,6 +1,6 @@
 ## KR 2
 
-[Understand GPIO settings](https://electronics.stackexchange.com/questions/156930/stm32-understanding-gpio-settings)
+ - [Understand GPIO settings](https://electronics.stackexchange.com/questions/156930/stm32-understanding-gpio-settings)
 
  - Частота мікроконтроллера = `120 МГц`
  - Частота шини AHB1 = `48 МГц`
