@@ -4,14 +4,14 @@ function requireUncached(module){
 }
 
 function requireUncachedRoute(prefix, method) {
-	return function(ctx) {
-		requireUncached(`./${prefix}`)[method](ctx);
+	return function(req, res) {
+		requireUncached(`./${prefix}/controller`)[method](req, res);
 	}
 }
 
 function requireCachedRoute(prefix, method) {
-	return function(ctx) {
-		require(`./${prefix}`)[method](ctx);
+	return function(req, res) {
+		require(`./${prefix}/controller`)[method](req, res);
 	}
 }
 
