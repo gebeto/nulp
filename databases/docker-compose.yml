@@ -2,7 +2,6 @@ version: '3'
 services:
   db:
     build: db
-    restart: always
     ports:
       - "${POSTGRES_PORT}:5432"
     volumes:

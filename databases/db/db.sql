@@ -11,7 +11,7 @@ CREATE TABLE public.customer (
 
 
 
-CREATE TABLE public.order_d (
+CREATE TABLE public.order (
 	id_order SERIAL PRIMARY KEY, 
 	date_on DATE NULL, 
 	customer_id INT NULL, 
@@ -49,9 +49,9 @@ CREATE OR REPLACE VIEW public.vCustomer AS
 	ord.width,
 	ord.height,
 	ord.length
-	 FROM customer cus
-	 JOIN order_d ord ON cus.id_customer = ord.customer_id
-	 JOIN door d ON d.id_door = ord.door_id
+	 FROM public.customer cus
+	 JOIN public.order ord ON cus.id_customer = ord.customer_id
+	 JOIN public.door d ON d.id_door = ord.door_id
 	WHERE d.price > 50;
 
 
@@ -77,9 +77,9 @@ CREATE OR REPLACE VIEW public.vCustomersDelivery AS
 	de.date,
 	de.done,
 	de.order_id
-	 FROM customer cus
-	 JOIN order_d ord ON cus.id_customer = ord.customer_id
-	 JOIN delivery de ON de.order_id = ord.id_order
+	 FROM public.customer cus
+	 JOIN public.order ord ON cus.id_customer = ord.customer_id
+	 JOIN public.delivery de ON de.order_id = ord.id_order
 	WHERE de.done = true;
 
 
@@ -175,14 +175,14 @@ CREATE TABLE public.user (
 
 ALTER TABLE public.customer ADD CONSTRAINT FK_Customer_City FOREIGN KEY(city_id) REFERENCES public.city (id_city) ON DELETE CASCADE;
 ALTER TABLE public.delivery ADD CONSTRAINT FK_Delivery_Delivery_Type FOREIGN KEY(typedelivery_id) REFERENCES public.delivery_type (id_deliverytype) ON DELETE CASCADE;
-ALTER TABLE public.delivery ADD CONSTRAINT FK_Delivery_Order FOREIGN KEY(order_id) REFERENCES public.order_d (id_order) ON DELETE CASCADE;
+ALTER TABLE public.delivery ADD CONSTRAINT FK_Delivery_Order FOREIGN KEY(order_id) REFERENCES public.order (id_order) ON DELETE CASCADE;
 ALTER TABLE public.door ADD CONSTRAINT FK_Door_Color FOREIGN KEY(color_id) REFERENCES public.color (id_color) ON DELETE CASCADE;
 ALTER TABLE public.door ADD CONSTRAINT FK_Door_Material FOREIGN KEY(material_id) REFERENCES public.material (id_material) ON DELETE CASCADE;
 ALTER TABLE public.door_part ADD CONSTRAINT FK_Door_Parts_Door FOREIGN KEY(door_id) REFERENCES public.door (id_door) ON DELETE CASCADE;
 ALTER TABLE public.door_part ADD CONSTRAINT FK_Door_Parts_Parts FOREIGN KEY(part_id) REFERENCES public.part (id_parts);
-ALTER TABLE public.order_d ADD CONSTRAINT FK_Order_Customer FOREIGN KEY(customer_id) REFERENCES public.customer (id_customer) ON DELETE CASCADE;
-ALTER TABLE public.order_d ADD CONSTRAINT FK_Order_Door FOREIGN KEY(door_id) REFERENCES public.door (id_door) ON DELETE CASCADE;
-ALTER TABLE public.order_d ADD CONSTRAINT FK_Order_Employee FOREIGN KEY(employee_id) REFERENCES public.employee (id_employee) ON DELETE CASCADE;
+ALTER TABLE public.order ADD CONSTRAINT FK_Order_Customer FOREIGN KEY(customer_id) REFERENCES public.customer (id_customer) ON DELETE CASCADE;
+ALTER TABLE public.order ADD CONSTRAINT FK_Order_Door FOREIGN KEY(door_id) REFERENCES public.door (id_door) ON DELETE CASCADE;
+ALTER TABLE public.order ADD CONSTRAINT FK_Order_Employee FOREIGN KEY(employee_id) REFERENCES public.employee (id_employee) ON DELETE CASCADE;
 ALTER TABLE public.part ADD CONSTRAINT FK_Parts_Color FOREIGN KEY(color_id) REFERENCES public.color (id_color) ON DELETE CASCADE;
 ALTER TABLE public.part ADD CONSTRAINT FK_Parts_Material FOREIGN KEY(material_id) REFERENCES public.material (id_material) ON DELETE CASCADE;
 ALTER TABLE public.user ADD CONSTRAINT FK_User_Role FOREIGN KEY(role_id) REFERENCES public.role (id) ON DELETE CASCADE;
