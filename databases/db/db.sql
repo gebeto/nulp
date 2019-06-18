@@ -1,3 +1,13 @@
+CREATE TABLE public.logs (
+	id SERIAL PRIMARY KEY, 
+	message VARCHAR(128) NULL,
+	date TIMESTAMP NOT NULL DEFAULT NOW()
+) WITH (
+	OIDS = FALSE
+);
+
+
+
 CREATE TABLE public.customer (
 	id_customer SERIAL PRIMARY KEY, 
 	cname VARCHAR(50) NULL, 
@@ -86,8 +96,7 @@ CREATE OR REPLACE VIEW public.vCustomersDelivery AS
 
 CREATE TABLE public.city (
 	id_city SERIAL PRIMARY KEY,
-	cityname VARCHAR(50) NULL, 
-	cityindex INT NULL
+	name VARCHAR(50) NULL
 ) WITH (
 	OIDS = FALSE
 );
@@ -174,15 +183,54 @@ CREATE TABLE public.user (
 
 
 ALTER TABLE public.customer ADD CONSTRAINT FK_Customer_City FOREIGN KEY(city_id) REFERENCES public.city (id_city) ON DELETE CASCADE;
+
 ALTER TABLE public.delivery ADD CONSTRAINT FK_Delivery_Delivery_Type FOREIGN KEY(typedelivery_id) REFERENCES public.delivery_type (id_deliverytype) ON DELETE CASCADE;
 ALTER TABLE public.delivery ADD CONSTRAINT FK_Delivery_Order FOREIGN KEY(order_id) REFERENCES public.order (id_order) ON DELETE CASCADE;
+
 ALTER TABLE public.door ADD CONSTRAINT FK_Door_Color FOREIGN KEY(color_id) REFERENCES public.color (id_color) ON DELETE CASCADE;
 ALTER TABLE public.door ADD CONSTRAINT FK_Door_Material FOREIGN KEY(material_id) REFERENCES public.material (id_material) ON DELETE CASCADE;
+ALTER TABLE public.door ADD CONSTRAINT UQ_Door_Color_Material UNIQUE (color_id, material_id);
+
 ALTER TABLE public.door_part ADD CONSTRAINT FK_Door_Parts_Door FOREIGN KEY(door_id) REFERENCES public.door (id_door) ON DELETE CASCADE;
 ALTER TABLE public.door_part ADD CONSTRAINT FK_Door_Parts_Parts FOREIGN KEY(part_id) REFERENCES public.part (id_parts);
+ALTER TABLE public.door_part ADD CONSTRAINT UQ_DoorPart_Door_Part UNIQUE (door_id, part_id);
+
+
 ALTER TABLE public.order ADD CONSTRAINT FK_Order_Customer FOREIGN KEY(customer_id) REFERENCES public.customer (id_customer) ON DELETE CASCADE;
 ALTER TABLE public.order ADD CONSTRAINT FK_Order_Door FOREIGN KEY(door_id) REFERENCES public.door (id_door) ON DELETE CASCADE;
 ALTER TABLE public.order ADD CONSTRAINT FK_Order_Employee FOREIGN KEY(employee_id) REFERENCES public.employee (id_employee) ON DELETE CASCADE;
+
+INSERT INTO public.color (name) VALUES
+	('Прозорий'),
+	('Червоний'),
+	('Зелений'),
+	('Синій'),
+	('Коричневий')
+;
+
+INSERT INTO public.material (name) VALUES
+	('Скло'),
+	('Метал'),
+	('Дерево')
+;
+
 ALTER TABLE public.part ADD CONSTRAINT FK_Parts_Color FOREIGN KEY(color_id) REFERENCES public.color (id_color) ON DELETE CASCADE;
 ALTER TABLE public.part ADD CONSTRAINT FK_Parts_Material FOREIGN KEY(material_id) REFERENCES public.material (id_material) ON DELETE CASCADE;
+INSERT INTO public.part (name, price, material_id, color_id) VALUES
+	('Вікно', 100, material_id, color_id),
+;
+
+ALTER TABLE public.role ADD CONSTRAINT UQ_Role_Name UNIQUE (name);
+INSERT INTO public.role ("id", "name") VALUES 
+	(1, 'admin'),
+	(2, 'manager')
+;
+
 ALTER TABLE public.user ADD CONSTRAINT FK_User_Role FOREIGN KEY(role_id) REFERENCES public.role (id) ON DELETE CASCADE;
+ALTER TABLE public.user ADD CONSTRAINT UQ_User_Email UNIQUE (email);
+INSERT INTO public.user ("email", "password", "role_id") VALUES 
+	('admin', 'admin', 1),
+	('manager_1', 'manager', 2),
+	('manager_2', 'manager', 2),
+	('manager_3', 'manager', 2)
+;
