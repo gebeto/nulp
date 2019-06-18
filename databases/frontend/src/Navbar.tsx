@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Navbar, Alignment } from "@blueprintjs/core";
+import { Button, Navbar, Alignment, Intent, Popover, PopoverInteractionKind, Position } from "@blueprintjs/core";
 import { NavLink } from "react-router-dom";
 
 import { resetAuthData } from './store/Globals';
@@ -14,6 +14,17 @@ const NavButtonLink = ({ to, text }) => (
 
 
 class NavBar extends React.Component<any, any> {
+	state = {
+		notification: false,
+	}
+
+	showNotifiations = () => {
+		this.setState(state => ({
+			...state,
+			notification: true,
+		}))
+	}
+
 	render() {
 		return (
 			<Navbar>
@@ -27,7 +38,18 @@ class NavBar extends React.Component<any, any> {
 				<Navbar.Group align={Alignment.RIGHT}>
 					<Navbar.Divider />
 					<Button className="bp3-minimal" icon="cog" />
-					<Button className="bp3-minimal" icon="notifications" />
+		            <Popover
+		                interactionKind={PopoverInteractionKind.CLICK}
+		                popoverClassName="bp3-popover-content-sizing"
+		                position={Position.BOTTOM_RIGHT}
+		            >
+		                <Button className="bp3-minimal" icon="notifications"></Button>
+		                <div>
+		                    <h3>Логи</h3>
+		                    <p>...</p>
+		                    <Button className="bp3-popover-dismiss">Закрити</Button>
+		                </div>
+		            </Popover>
 					<Button className="bp3-minimal" icon="user" text="Вийти" onClick={this.props.logout} />
 				</Navbar.Group>
 			</Navbar>
