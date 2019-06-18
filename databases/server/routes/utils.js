@@ -3,16 +3,28 @@ function requireUncached(module){
 	return require(module);
 }
 
-function requireUncachedRoute(prefix, method) {
+function requireWithErrorHandling(requireFunc, prefix, method) {
 	return function(req, res) {
-		requireUncached(`./${prefix}/controller`)[method](req, res);
+		try {
+			requireFunc(`./${prefix}`)[method](req, res).catch(err => {
+				console.log(err);
+				res.send(err);
+			});
+		} catch(err) {
+			console.log(err);
+			res.send(err);
+		}
 	}
 }
 
+
+function requireUncachedRoute(prefix, method) {
+	return requireWithErrorHandling(requireUncached, prefix, method)
+}
+
+
 function requireCachedRoute(prefix, method) {
-	return function(req, res) {
-		require(`./${prefix}/controller`)[method](req, res);
-	}
+	return requireWithErrorHandling(require, prefix, method)
 }
 
 
