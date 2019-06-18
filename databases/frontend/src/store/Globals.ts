@@ -1,21 +1,28 @@
 export const initialState = {
-	data: [],
+	token: localStorage.getItem('token'),
+	username: localStorage.getItem('username'),
 };
 
 
-export const reducer = (state: any = initialState, action: any) => {
-	if (action.type) {
+export const SET_AUTH_DATA = 'SET_AUTH_DATA';
+
+
+export const reducer = (state: any = initialState, { type, payload }: any) => {
+	if (type === SET_AUTH_DATA) {
+		localStorage.setItem('token', payload.token)
+		localStorage.setItem('username', payload.username)
 		return {
 			...state,
+			...payload,
 		}
 	}
 	return state;
 }
 
 
-const setStage = (stage: any) => {
+export const setAuthData = (authData: any) => {
 	return {
-		type: 'SET_STAGE',
-		payload: stage,
+		type: SET_AUTH_DATA,
+		payload: authData,
 	};
 };
