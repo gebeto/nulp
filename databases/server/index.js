@@ -7,6 +7,9 @@ const PORT = process.env.SERVER_PORT || 3000;
 const app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(db.middleware);
 app.use('/static', express.static(path.resolve(__dirname, 'static')));
 app.use('/api', require('./routes/'));

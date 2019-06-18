@@ -3,11 +3,16 @@ const requireRoute = require('./utils').requireRoute;
 
 
 const usersRouter = express.Router();
-usersRouter.get('/get', requireRoute('users', 'get'));
-usersRouter.get('/getAll', requireRoute('users', 'getAll'));
+usersRouter.post('/get', requireRoute('users', 'get'));
+usersRouter.post('/getAll', requireRoute('users', 'getAll'));
+
+const authRouter = express.Router();
+authRouter.post('/login', requireRoute('auth', 'login'));
+
 
 
 const apiRouter = express.Router();
 apiRouter.use('/users', usersRouter);
+apiRouter.use('/auth', authRouter);
 
 module.exports = apiRouter;

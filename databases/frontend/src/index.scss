@@ -5,6 +5,10 @@ body {
 	height: 100vh;
 }
 
+.container {
+	padding: 0px 1em;
+}
+
 .centered {
 	width: 100vw;
 	height: 100vh;
@@ -19,4 +23,29 @@ body {
 
 .text-center {
 	text-align: center;
+}
+
+
+.active > .bp3-button {
+	background: rgba(115, 134, 148, 0.8);
+	color: #fff;
+}
+
+
+.container {
+
+}
+
+@for $i from 1 through 12 {
+    .col-#{$i} {
+		width: #{$i * (100% / 12)};
+    }
+}
+
+.page-h1 {
+	margin: 0.6em 0;
+}
+
+.w-0 {
+	max-width: 0;
 }

@@ -1,52 +1,46 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Button, Navbar, Alignment } from "@blueprintjs/core";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
+import { resetAuthData } from './store/Globals';
 
 
-export const NavUnauthorized = ({ }) => {
-	return (
-		<Navbar fixedToTop>
-			<Navbar.Group align={Alignment.LEFT}>
-				<Navbar.Heading>
-					Admin tool
-				</Navbar.Heading>
-			</Navbar.Group>
-			<Navbar.Group align={Alignment.RIGHT}>
-				<Navbar.Divider />
-				<Link to="/auth">Login</Link>
-				<Button className="bp3-minimal" icon="user" disabled />
-				<Button className="bp3-minimal" icon="notifications" disabled />
-				<Button className="bp3-minimal" icon="cog" disabled />
-			</Navbar.Group>
-		</Navbar>
-	);
-}
+const NavButtonLink = ({ to, text }) => (
+	<NavLink to={to} exact>
+		<Button className="bp3-minimal" text={text} />
+	</NavLink>
+);
 
-export const NavAuthorized = () => {
-	return (
-		<Navbar fixedToTop>
-			<Navbar.Group align={Alignment.LEFT}>
-				<Navbar.Heading>Admin tool</Navbar.Heading>
-				<Navbar.Divider />
-				<Button className="bp3-minimal" icon="home" text="Home" />
-				<Button className="bp3-minimal" icon="users" text="Users" />
-				<Button className="bp3-minimal" icon="document" text="Doors" />
-			</Navbar.Group>
-			<Navbar.Group align={Alignment.RIGHT}>
-				<Navbar.Divider />
-				<Button className="bp3-minimal" icon="user" />
-				<Button className="bp3-minimal" icon="notifications" />
-				<Button className="bp3-minimal" icon="cog" />
-			</Navbar.Group>
-		</Navbar>
-	);
+
+class NavBar extends React.Component<any, any> {
+	render() {
+		return (
+			<Navbar>
+				<Navbar.Group align={Alignment.LEFT}>
+					<Navbar.Heading>Admin tool</Navbar.Heading>
+					<Navbar.Divider />
+					<NavButtonLink to="/" text="Головна" />
+					<NavButtonLink to="/users" text="Користувачі" />
+					<NavButtonLink to="/doors" text="Двері" />
+				</Navbar.Group>
+				<Navbar.Group align={Alignment.RIGHT}>
+					<Navbar.Divider />
+					<Button className="bp3-minimal" icon="cog" />
+					<Button className="bp3-minimal" icon="notifications" />
+					<Button className="bp3-minimal" icon="user" text="Вийти" onClick={this.props.logout} />
+				</Navbar.Group>
+			</Navbar>
+		);
+	}
 }
 
 
-export const NavBar = () => {
-	return (
-		<NavUnauthorized />
-	);
-}
-
-export default NavBar;
+export default connect(
+	undefined,
+	dispatch => ({
+		logout() {
+			dispatch(resetAuthData());
+		}
+	}),
+)(NavBar);

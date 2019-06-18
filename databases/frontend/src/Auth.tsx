@@ -4,14 +4,16 @@ import { setAuthData } from './store/Globals';
 
 import { Button, Card, Elevation } from "@blueprintjs/core";
 import { FormGroup, H3, InputGroup, Icon, Intent, Switch } from "@blueprintjs/core";
+import { login } from './api';
 
 
-function auth(login, password) {
-	return new Promise((resolve, reject) => {
-		setTimeout(() => {
-			resolve({ token: '1111111', username: login });
-		}, 2000);
-	});
+function auth(username, password) {
+	return login(username, password);
+	// return new Promise((resolve, reject) => {
+	// 	setTimeout(() => {
+	// 		resolve({ token: '1111111', username: login });
+	// 	}, 2000);
+	// });
 }
 
 
