@@ -22,8 +22,10 @@ class App extends React.Component<any, any> {
 		return (
 			<div>
 				<Navbar />
-				<Route path="/" component={Home} />
-				<Route path="/users" component={Users} />
+				<div className="container">
+					<Route path="/" exact component={Home} />
+					<Route path="/users" exact component={Users} />
+				</div>
 			</div>
 		);
 	}

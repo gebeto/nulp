@@ -8,6 +8,7 @@ exports.login = async function login(req, res) {
 	console.log('data.rows', data.rows);
 	if (data.rows.length) {
 		const user = data.rows[0];
+		console.log(user);
 		res.send({
 			token: utils.encodeJWT(user),
 			username: user.email,

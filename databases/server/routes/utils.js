@@ -30,15 +30,12 @@ function requireCachedRoute(prefix, method) {
 	return requireWithErrorHandling(require, prefix, method)
 }
 
-
-const SECRET = "MY_SECRET";
-
-exports.decodeJWT = (token) => {
-	return jwt.decode(token);
-}
+// exports.decodeJWT = (token) => {
+// 	return jwt.decode(token);
+// }
 
 exports.encodeJWT = (data) => {
-	return jwt.sign(data, SECRET);
+	return jwt.sign(data, process.env.SECRET_KEY);
 }
 
 

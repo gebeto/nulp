@@ -2,23 +2,42 @@ import * as React from 'react';
 import Table from './Table';
 import { H1 } from '@blueprintjs/core';
 
+import { usersGetAll } from './api';
 
-const data = [
-	{ id: 1, name: 'Slavik 1' },
-	{ id: 2, name: 'Slavik 2' },
-	{ id: 3, name: 'Slavik 3' },
-];
 
 const fields = [
-	{ key: 'id', title: 'Id' },
-	{ key: 'name', title: 'Ім\'я' },
+	{ key: 'id', title: 'Id', editable: false },
+	{ key: 'email', title: 'Пошта' },
+	{ key: 'role', title: 'Роль', editable: false },
 ];
 
-export default function Users({}) {
-	return (
-		<div className="col-12">
-			<H1 className="page-h1">Користувачі</H1>
-			<Table data={data} fields={fields} editable={true} />
-		</div>
-	);
+
+class Users extends React.Component<any, any> {
+	state = {
+		data: [],
+	};
+
+	componentDidMount() {
+		usersGetAll().then(res => {
+			this.setState(state => ({ ...state, data: res.items }));
+		});
+	}
+
+	onItemUpdate = (oldItem, newItem) => {
+		this.setState(state => ({
+			data: state.data.map(el => el === oldItem ? {...el, ...newItem } : el ),
+		}));
+	}
+
+	render() {
+		return (
+			<div className="col-12">
+				<H1 className="page-h1">Користувачі</H1>
+				<Table data={this.state.data} fields={fields} editable={true} onItemUpdate={this.onItemUpdate} />
+			</div>
+		);
+	}
 }
+
+
+export default Users;

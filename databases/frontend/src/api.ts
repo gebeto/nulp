@@ -7,10 +7,18 @@ export const API = (method, data) => {
 		headers: {
 			"Content-Type": "application/json"
 		},
-		body: JSON.stringify(data),
+		body: JSON.stringify({
+			...data,
+			token: localStorage.getItem('token'),
+		}),
 	}).then(res => res.json())
 };
 
 export const login = (login, password) => {
 	return API('auth/login', { login, password });
+}
+
+
+export const usersGetAll = () => {
+	return API('users/getAll');
 }

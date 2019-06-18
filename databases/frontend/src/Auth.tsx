@@ -9,11 +9,6 @@ import { login } from './api';
 
 function auth(username, password) {
 	return login(username, password);
-	// return new Promise((resolve, reject) => {
-	// 	setTimeout(() => {
-	// 		resolve({ token: '1111111', username: login });
-	// 	}, 2000);
-	// });
 }
 
 
