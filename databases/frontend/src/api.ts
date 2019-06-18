@@ -19,6 +19,20 @@ export const login = (login, password) => {
 }
 
 
-export const usersGetAll = () => {
-	return API('users/getAll');
-}
+const createClassicEndpoint = (prefix) => ({
+	get() {
+		return API(`${prefix}/get`);
+	},
+
+	getAll() {
+		return API(`${prefix}/getAll`);
+	},
+
+	update(data) {
+		return API(`${prefix}/update`, data);
+	}
+});
+
+
+export const users = createClassicEndpoint('users');
+export const doors = createClassicEndpoint('doors');

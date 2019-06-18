@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { setAuthData } from './store/Globals';
+import { setAuthData } from '../store/Globals';
 
 import { Button, Card, Elevation } from "@blueprintjs/core";
 import { FormGroup, H3, InputGroup, Icon, Intent, Switch } from "@blueprintjs/core";
-import { login } from './api';
+import { login } from '../api';
 
 
 function auth(username, password) {

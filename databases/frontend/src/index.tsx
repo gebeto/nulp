@@ -12,9 +12,10 @@ import "@blueprintjs/core/lib/css/blueprint.css";
 import './index.scss';
 
 import Navbar from './Navbar';
-import Home from './Home';
-import Users from './Users';
-import Auth from './Auth';
+import Home from './pages/Home';
+import Users from './pages/Users';
+import Doors from './pages/Doors';
+import Auth from './pages/Auth';
 
 
 class App extends React.Component<any, any> {
@@ -25,6 +26,7 @@ class App extends React.Component<any, any> {
 				<div className="container">
 					<Route path="/" exact component={Home} />
 					<Route path="/users" exact component={Users} />
+					<Route path="/doors" exact component={Doors} />
 				</div>
 			</div>
 		);

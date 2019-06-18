@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Table from './Table';
+import Table from '../Table';
 import { H1, H2 } from '@blueprintjs/core';
 
 
