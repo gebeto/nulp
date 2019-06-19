@@ -692,11 +692,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/gebeto/Desktop/Github/nulp/signals/lab-1/lab-1.csproj",
-      "projectName": "lab-1",
-      "projectPath": "/Users/gebeto/Desktop/Github/nulp/signals/lab-1/lab-1.csproj",
+      "projectUniqueName": "/Users/gebeto/Desktop/Github/nulp/signals/lab-1-2/lab-1-2.csproj",
+      "projectName": "lab-1-2",
+      "projectPath": "/Users/gebeto/Desktop/Github/nulp/signals/lab-1-2/lab-1-2.csproj",
       "packagesPath": "/Users/gebeto/.nuget/packages/",
-      "outputPath": "/Users/gebeto/Desktop/Github/nulp/signals/lab-1/obj/",
+      "outputPath": "/Users/gebeto/Desktop/Github/nulp/signals/lab-1-2/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

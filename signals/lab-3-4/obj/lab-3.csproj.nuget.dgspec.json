@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/gebeto/Desktop/Github/nulp/signals/lab-1/lab-1.csproj": {}
+    "/Users/gebeto/Desktop/Github/nulp/signals/lab-3-4/lab-3.csproj": {}
   },
   "projects": {
-    "/Users/gebeto/Desktop/Github/nulp/signals/lab-1/lab-1.csproj": {
+    "/Users/gebeto/Desktop/Github/nulp/signals/lab-3-4/lab-3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/gebeto/Desktop/Github/nulp/signals/lab-1/lab-1.csproj",
-        "projectName": "lab-1",
-        "projectPath": "/Users/gebeto/Desktop/Github/nulp/signals/lab-1/lab-1.csproj",
+        "projectUniqueName": "/Users/gebeto/Desktop/Github/nulp/signals/lab-3-4/lab-3.csproj",
+        "projectName": "lab-3",
+        "projectPath": "/Users/gebeto/Desktop/Github/nulp/signals/lab-3-4/lab-3.csproj",
         "packagesPath": "/Users/gebeto/.nuget/packages/",
-        "outputPath": "/Users/gebeto/Desktop/Github/nulp/signals/lab-1/obj/",
+        "outputPath": "/Users/gebeto/Desktop/Github/nulp/signals/lab-3-4/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
