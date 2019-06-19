@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 
-namespace lab_1_2
+
+namespace lab_1
 {
 	class Program
 	{

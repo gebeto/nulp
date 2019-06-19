@@ -1,0 +1,2 @@
+Calculation error: 1.5E-06
+N = 6000
