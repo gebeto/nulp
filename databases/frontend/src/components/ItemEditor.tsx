@@ -8,14 +8,22 @@ import {
 	FormGroup,
 	InputGroup,
 	H3,
-	ControlGroup
+	ControlGroup,
+	Dialog,
+	Intent
 } from '@blueprintjs/core';
 
+import AddItemDialog from './AddItemDialog';
+import EditItemsDialog from './EditItemsDialog';
 
-class EndpointSelect extends React.Component<any, any> {
+
+const EditableHoc = () => (Component) => class extends React.Component<any, any> {
 	state = {
 		data: [],
-		fetching: false,
+		isFetching: false,
+	
+		isAddDialogOpen: false,
+		isEditDialogOpen: false,
 	}
 
 	componentDidMount() {
@@ -38,25 +46,99 @@ class EndpointSelect extends React.Component<any, any> {
 		this.props.onChange({ target: { name: this.props.changeName, value: Pkey } });
 	}
 
+	onEditClick = () => {
+		this.setState(state => ({ ...state, isEditDialogOpen: true }));
+	}
+
+
+	onEditClose = () => {
+		this.setState(state => ({ ...state, isEditDialogOpen: false }));
+	}
+
+	onAddClick = () => {
+		this.setState(state => ({ ...state, isAddDialogOpen: true }));
+	}
+
+	onAddSuccess = (data) => {
+		this.setState(state => ({
+			...state,
+			data: Array.prototype.concat([], state.data, data),
+		}));
+		this.onAddClose();
+	}
+
+	onAddClose = () => {
+		this.setState(state => ({ ...state, isAddDialogOpen: false }));
+	}
+
 	render() {
-		const { name, value, disabled, onChange, endpoint } = this.props;
-		const { data } = this.state;
-		console.log('render', value);
 		return (
-			<ControlGroup fill={true} vertical={false}>
-				<HTMLSelect fill disabled={disabled} name={name} value={value} onChange={this.onChange}>
-					{data.reduce((res, val) => {
-						res[value == val[endpoint.value] ? 'unshift' : 'push'](val);
-						return res;
-					}, []).map(el =>
-						<option key={el[endpoint.key]} value={el[endpoint.key]}>{el[endpoint.value]}</option>
-					)}
-				</HTMLSelect>
-				<Button icon="add" />
-			</ControlGroup>
+			<Component
+				{...this.props}
+				{...this.state}
+				onChange={this.onChange}
+				onAddClick={this.onAddClick}
+				onAddClose={this.onAddClose}
+				onAddSuccess={this.onAddSuccess}
+				onEditClick={this.onEditClick}
+				onEditClose={this.onEditClose}
+			/>
 		);
 	}
 }
+
+
+const EndpointSelectRaw = (props) => {
+	const {
+		name,
+		value,
+		disabled,
+		onChange,
+		onAddClick,
+		onAddSuccess,
+		onAddClose,
+		onEditClick,
+		onEditClose,
+		endpoint,
+		field,
+		data,
+		isAddDialogOpen,
+		isEditDialogOpen,
+	} = props;
+
+	console.log('ED', isEditDialogOpen);
+
+	return (
+		<ControlGroup fill={true} vertical={false}>
+			<HTMLSelect fill disabled={disabled} name={name} value={value} onChange={onChange}>
+				{data.reduce((res, val) => {
+					res[value == val[endpoint.value] ? 'unshift' : 'push'](val);
+					return res;
+				}, []).map(el =>
+					<option key={el[endpoint.key]} value={el[endpoint.key]}>{el[endpoint.value]}</option>
+				)}
+			</HTMLSelect>
+			<Button icon="cog" onClick={onEditClick} />
+			<Button icon="add" onClick={onAddClick} />
+			<AddItemDialog
+				isOpen={isAddDialogOpen}
+				onAddClose={onAddClose}
+				onAddSuccess={onAddSuccess}
+				endpoint={endpoint}
+				field={field}
+			/>
+			<EditItemsDialog
+				isOpen={isEditDialogOpen}
+				onEditClose={onEditClose}
+				endpoint={endpoint}
+				field={field}
+			/>
+		</ControlGroup>
+	);
+}
+
+
+const EndpointSelect = EditableHoc()(EndpointSelectRaw);
 
 
 class ItemEditor extends React.Component<any, any> {
@@ -99,13 +181,13 @@ class ItemEditor extends React.Component<any, any> {
 				<div className={Classes.DRAWER_HEADER}>
 					<H3>Редагування</H3>
 				</div>
-			    <div className={Classes.DRAWER_BODY}>
-			        <div className={Classes.DIALOG_BODY}>
+				<div className={Classes.DRAWER_BODY}>
+					<div className={Classes.DIALOG_BODY}>
 						{this.props.data ?
 							fields.map(field =>
 								<FormGroup label={field.title} key={field.key}>
 									{field.type === 'select' ?
-									<EndpointSelect disabled={field.editable === false} name={field.key} value={newData[field.key]} onChange={this.onFieldChange} endpoint={field.endpoint} changeName={field.changeName} />
+									<EndpointSelect disabled={field.editable === false} name={field.key} value={newData[field.key]} onChange={this.onFieldChange} endpoint={field.endpoint} changeName={field.changeName} field={field} />
 									:
 									<InputGroup type={field.type} disabled={field.editable === false} placeholder={field.title} name={field.key} value={newData[field.key]} onChange={this.onFieldChange} />
 									}
@@ -113,11 +195,11 @@ class ItemEditor extends React.Component<any, any> {
 							)
 							: null
 						}
-			        </div>
-			    </div>
-			    <div className={Classes.DRAWER_FOOTER}>
-			    	<Button loading={saving} className="bp3-intent-success" large fill onClick={this.save}>Зберегти</Button>
-			    </div>
+					</div>
+				</div>
+				<div className={Classes.DRAWER_FOOTER}>
+					<Button loading={saving} className="bp3-intent-success" large fill onClick={this.save}>Зберегти</Button>
+				</div>
 			</Drawer>
 		);
 	}

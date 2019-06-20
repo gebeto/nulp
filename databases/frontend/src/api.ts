@@ -19,7 +19,7 @@ export const login = (login, password) => {
 }
 
 
-const createClassicEndpoint = (prefix, key = 'id', value = 'name') => ({
+const createClassicEndpoint = (prefix, { key = 'id', value = 'name', isDict = false } = {}) => ({
 	key: key,
 	value: value,
 
@@ -33,12 +33,17 @@ const createClassicEndpoint = (prefix, key = 'id', value = 'name') => ({
 
 	update(data) {
 		return API(`${prefix}/update`, data);
-	}
+	},
+
+	add(data) {
+		return API(`${prefix}/add`, data);
+	},
 });
 
 
 export const users = createClassicEndpoint('users');
 export const doors = createClassicEndpoint('doors');
-export const materials = createClassicEndpoint('materials');
-export const colors = createClassicEndpoint('colors');
-export const roles = createClassicEndpoint('roles');
+
+export const materials = createClassicEndpoint('materials', { isDict: true });
+export const colors = createClassicEndpoint('colors', { isDict: true });
+export const roles = createClassicEndpoint('roles', { isDict: true });

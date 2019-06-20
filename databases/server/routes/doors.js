@@ -23,10 +23,12 @@ exports.getAll = fabrics.getAll([], `
 `);
 
 
-exports.update = fabrics.update(['model', 'price', 'id'], `
+exports.update = fabrics.update(['id', 'model', 'price', 'material_id', 'color_id'], `
 	UPDATE "door"
 	SET
-		model = $1::text,
-		price = $2::numeric
-	WHERE id_door = $3::numeric
+		model = $2::text,
+		price = $3::numeric,
+		material_id = $4::numeric,
+		color_id = $5::numeric
+	WHERE id_door = $1::numeric
 `);
