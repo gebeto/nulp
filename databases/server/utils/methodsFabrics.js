@@ -58,9 +58,9 @@ exports.add = (args, add_query) => async function add(req, res) {
 		const data = await req.db_query(add_query, arrFromObj(args, req.body))
 		await res.send({
 			success: data.rowCount,
+			data: data.rows
 		});
 	} catch(err) {
-		console.log(err);
 		await res.send({
 			error: 1,
 			message: err.detail || err.message,
@@ -84,8 +84,8 @@ exports.dictGet = (table, id, name) => {
 exports.dictGetAll = (table, id, name) => {
 	const sql = `
 		SELECT
-			${id} as id,
-			${name} as name
+			t.${id} as id,
+			t.${name} as name
 		FROM "${table}" t
 		ORDER BY t.${id}
 	`;
@@ -99,4 +99,14 @@ exports.dictUpdate = (table, id, name) => {
 	`;
 
 	return exports.update(['id', 'name'], sql);
+}
+
+exports.dictAdd = (table, id, name) => {
+	const sql = `
+		INSERT INTO public.${table} (${name}) VALUES ($1::text)
+		RETURNING ${id} as id, ${name} as name
+
+	`;
+
+	return exports.add(['name'], sql);
 }
