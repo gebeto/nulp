@@ -19,7 +19,10 @@ export const login = (login, password) => {
 }
 
 
-const createClassicEndpoint = (prefix) => ({
+const createClassicEndpoint = (prefix, key = 'id', value = 'name') => ({
+	key: key,
+	value: value,
+
 	get() {
 		return API(`${prefix}/get`);
 	},

@@ -1,5 +1,59 @@
 import * as React from 'react';
-import { HTMLTable, Button, Drawer, Classes, FormGroup, InputGroup, H3 } from '@blueprintjs/core';
+import {
+	HTMLTable,
+	HTMLSelect,
+	Button,
+	Drawer,
+	Classes,
+	FormGroup,
+	InputGroup,
+	H3,
+} from '@blueprintjs/core';
+
+
+class EndpointSelect extends React.Component<any, any> {
+	state = {
+		data: [],
+		fetching: false,
+	}
+
+	componentDidMount() {
+		this.setState(state => ({ ...state, fetching: true, }));
+		this.props.endpoint.getAll().then(res => {
+			console.log(res, this.props.value);
+			this.setState(state => ({
+				...state,
+				fetching: true,
+				data: res.items
+			}));
+		});
+	}
+
+	onChange = (e) => {
+		const { name, value } = e.target;
+		const selectedValue = this.state.data.find(el => el[this.props.endpoint.key] == value);
+		const Pvalue = selectedValue[this.props.endpoint.value];
+		const Pkey = selectedValue[this.props.endpoint.key];
+		this.props.onChange({ target: { name: name, value: Pvalue } });
+		this.props.onChange({ target: { name: this.props.changeName, value: Pkey } });
+	}
+
+	render() {
+		const { name, value, disabled, onChange, endpoint } = this.props;
+		const { data } = this.state;
+		console.log('render', value);
+		return (
+			<HTMLSelect fill disabled={disabled} name={name} value={value} onChange={this.onChange}>
+				{data.reduce((res, val) => {
+					res[value == val[endpoint.value] ? 'unshift' : 'push'](val);
+					return res;
+				}, []).map(el =>
+					<option key={el[endpoint.key]} value={el[endpoint.key]}>{el[endpoint.value]}</option>
+				)}
+			</HTMLSelect>
+		);
+	}
+}
 
 
 class ItemEditor extends React.Component<any, any> {
@@ -17,6 +71,7 @@ class ItemEditor extends React.Component<any, any> {
 
 	onFieldChange = (e) => {
 		const { name, value } = e.target;
+		console.log(name, value);
 		this.setState(state => ({
 			...state,
 			fields: {
@@ -46,7 +101,11 @@ class ItemEditor extends React.Component<any, any> {
 						{this.props.data ?
 							fields.map(field =>
 								<FormGroup label={field.title} key={field.key}>
+									{field.type === 'select' ?
+									<EndpointSelect disabled={field.editable === false} name={field.key} value={newData[field.key]} onChange={this.onFieldChange} endpoint={field.endpoint} changeName={field.changeName} />
+									:
 									<InputGroup type={field.type} disabled={field.editable === false} placeholder={field.title} name={field.key} value={newData[field.key]} onChange={this.onFieldChange} />
+									}
 								</FormGroup>
 							)
 							: null

@@ -3,13 +3,13 @@ import Table from '../components/Table';
 import { H1 } from '@blueprintjs/core';
 
 import { withItemsFetching } from '../hoc/withItemsFetching';
-import { users } from '../api';
+import { users, roles } from '../api';
 
 
 const fields = [
 	{ key: 'id', title: 'Id', editable: false },
 	{ key: 'email', title: 'Пошта' },
-	{ key: 'role', title: 'Роль', editable: false },
+	{ key: 'role', title: 'Роль', type: 'select', endpoint: roles, changeName: 'role_id' },
 ];
 
 

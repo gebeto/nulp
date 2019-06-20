@@ -19,6 +19,10 @@ exports.getAll = fabrics.getAll([], `
 `);
 
 
-exports.update = fabrics.update(['email', 'id'], `
-	UPDATE "user" SET email = $1::text WHERE id = $2::numeric;
+exports.update = fabrics.update(['id', 'email', 'role_id'], `
+	UPDATE "user"
+		SET
+			email = $2::text,
+			role_id = $3::numeric
+	WHERE id = $1::numeric
 `);

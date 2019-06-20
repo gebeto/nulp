@@ -43,9 +43,10 @@ exports.update = (args, update_query) => async function update(req, res) {
 			success: data.rowCount,
 		});
 	} catch(err) {
+		console.log(err);
 		await res.send({
 			error: 1,
-			message: err.detail,
+			message: err.detail || err.message,
 		});		
 	}
 }
