@@ -1,6 +1,6 @@
 const base_url = "/api"
 
-export const API = (method, data) => {
+export const API = (method, data?) => {
 	console.log('data', data);
 	return fetch(`${base_url}/${method}`, {
 		method: 'POST',
@@ -36,3 +36,4 @@ const createClassicEndpoint = (prefix) => ({
 
 export const users = createClassicEndpoint('users');
 export const doors = createClassicEndpoint('doors');
+export const roles = createClassicEndpoint('roles');

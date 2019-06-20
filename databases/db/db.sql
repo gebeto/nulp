@@ -222,7 +222,8 @@ ALTER TABLE public.order ADD CONSTRAINT FK_Order_Employee FOREIGN KEY(employee_i
 ALTER TABLE public.part ADD CONSTRAINT FK_Parts_Color FOREIGN KEY(color_id) REFERENCES public.color (id_color) ON DELETE CASCADE;
 ALTER TABLE public.part ADD CONSTRAINT FK_Parts_Material FOREIGN KEY(material_id) REFERENCES public.material (id_material) ON DELETE CASCADE;
 INSERT INTO public.part (name, price, material_id, color_id) VALUES
-	('Вікно', 100, material_id, color_id),
+	('Вікно', 100, 1, 1),
+	('Рама', 100, 2, 4)
 ;
 
 ALTER TABLE public.role ADD CONSTRAINT UQ_Role_Name UNIQUE (name);

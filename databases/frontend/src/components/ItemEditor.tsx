@@ -46,7 +46,7 @@ class ItemEditor extends React.Component<any, any> {
 						{this.props.data ?
 							fields.map(field =>
 								<FormGroup label={field.title} key={field.key}>
-									<InputGroup disabled={field.editable === false} placeholder={field.title} name={field.key} value={newData[field.key]} onChange={this.onFieldChange} />
+									<InputGroup type={field.type} disabled={field.editable === false} placeholder={field.title} name={field.key} value={newData[field.key]} onChange={this.onFieldChange} />
 								</FormGroup>
 							)
 							: null

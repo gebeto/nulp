@@ -13,9 +13,10 @@ import './index.scss';
 
 import Navbar from './Navbar';
 import Home from './pages/Home';
+import Auth from './pages/Auth';
 import Users from './pages/Users';
 import Doors from './pages/Doors';
-import Auth from './pages/Auth';
+import Roles from './pages/Roles';
 
 
 class App extends React.Component<any, any> {
@@ -27,6 +28,7 @@ class App extends React.Component<any, any> {
 					<Route path="/" exact component={Home} />
 					<Route path="/users" exact component={Users} />
 					<Route path="/doors" exact component={Doors} />
+					<Route path="/roles" exact component={Roles} />
 				</div>
 			</div>
 		);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { H1 } from '@blueprintjs/core';
+import { H1, ProgressBar } from '@blueprintjs/core';
 import Table from '../components/Table';
 import ItemEditor from '../components/ItemEditor';
 
@@ -14,6 +14,8 @@ export const withItemsFetching = ({ title, endpoint, fields }) => (Component) =>
 			data: [],
 			editableItem: null,
 			saving: false,
+
+			fetching: false,
 		};
 
 		componentWillUnmount() {
@@ -22,14 +24,14 @@ export const withItemsFetching = ({ title, endpoint, fields }) => (Component) =>
 
 		componentDidMount() {
 			this.isUnmounted = false;
+			this.setState(state => ({ ...state, fetching: true, }));
 			endpoint.getAll().then(res => {
 				if (this.isUnmounted) return;
-				this.setState(state => ({ ...state, data: res.items }));
+				this.setState(state => ({ ...state, data: res.items, fetching: false, }));
 			});
 		}
 
 		onEditClick = (item) => {
-			console.log('EDIT', item)
 			this.setState(state => ({
 				...state,
 				editableItem: item,
@@ -37,9 +39,7 @@ export const withItemsFetching = ({ title, endpoint, fields }) => (Component) =>
 		}
 
 		onEditCancel = () => {
-			console.log('CANCEL', this.state)
 			if (this.state.saving) return;
-			console.log('CANCEL NOOO', this.state)
 			this.setState(state => ({
 				...state,
 				editableItem: null,
@@ -72,7 +72,11 @@ export const withItemsFetching = ({ title, endpoint, fields }) => (Component) =>
 			return (
 				<div className="col-12">
 					<H1 className="page-h1">{title}</H1>
-					<Table editable={true} data={this.state.data} saving={this.state.saving} fields={fields} onEditClick={this.onEditClick} />
+					{this.state.fetching ?
+						<ProgressBar animate />
+						:
+						<Table editable={true} data={this.state.data} saving={this.state.saving} fields={fields} onEditClick={this.onEditClick} />
+					}
 					<ItemEditor saving={this.state.saving} fields={fields} data={this.state.editableItem} onCancel={this.onEditCancel} onSave={this.onEditSave} />
 				</div>
 			);

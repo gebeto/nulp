@@ -3,15 +3,12 @@ import Table from '../components/Table';
 import { H1 } from '@blueprintjs/core';
 
 import { withItemsFetching } from '../hoc/withItemsFetching';
-import { doors } from '../api';
+import { roles } from '../api';
 
 
 const fields = [
 	{ key: 'id', title: 'Id', editable: false },
-	{ key: 'model', title: 'Модель' },
-	{ key: 'price', title: 'Ціна', type: 'number' },
-	{ key: 'material', title: 'Матеріал' },
-	{ key: 'color', title: 'Колір' },
+	{ key: 'name', title: 'Назва' },
 ];
 
 function Doors() {
@@ -19,7 +16,7 @@ function Doors() {
 }
 
 export default withItemsFetching({
-	title: "Двері",
-	endpoint: doors,
+	title: "Ролі",
+	endpoint: roles,
 	fields: fields,
 })(<Doors />);

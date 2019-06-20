@@ -1,0 +1,4 @@
+#! /bin/bash
+
+docker-compose restart server
+docker-compose logs -f server

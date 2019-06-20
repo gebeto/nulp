@@ -1,15 +1,13 @@
-const jwt = require('jsonwebtoken');
-
-
 function requireUncached(module){
 	delete require.cache[require.resolve(module)];
 	return require(module);
 }
 
+
 function requireWithErrorHandling(requireFunc, prefix, method) {
 	return function(req, res) {
 		try {
-			requireFunc(`./${prefix}`)[method](req, res).catch(err => {
+			requireFunc(`../routes/${prefix}`)[method](req, res).catch(err => {
 				console.log(err);
 				res.send(err);
 			});
@@ -30,13 +28,6 @@ function requireCachedRoute(prefix, method) {
 	return requireWithErrorHandling(require, prefix, method)
 }
 
-// exports.decodeJWT = (token) => {
-// 	return jwt.decode(token);
-// }
-
-exports.encodeJWT = (data) => {
-	return jwt.sign(data, process.env.SECRET_KEY);
-}
 
 
 exports.requireUncached = requireUncached;
