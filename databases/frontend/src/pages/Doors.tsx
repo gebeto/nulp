@@ -3,15 +3,15 @@ import Table from '../components/Table';
 import { H1 } from '@blueprintjs/core';
 
 import { withItemsFetching } from '../hoc/withItemsFetching';
-import { doors } from '../api';
+import { doors, materials, colors } from '../api';
 
 
 const fields = [
 	{ key: 'id', title: 'Id', editable: false },
 	{ key: 'model', title: 'Модель' },
 	{ key: 'price', title: 'Ціна', type: 'number' },
-	{ key: 'material', title: 'Матеріал' },
-	{ key: 'color', title: 'Колір' },
+	{ key: 'material', title: 'Матеріал', type: 'select', endpoint: materials, changeName: 'material_id' },
+	{ key: 'color', title: 'Колір', type: 'select', endpoint: colors, changeName: 'color_id' },
 ];
 
 function Doors() {

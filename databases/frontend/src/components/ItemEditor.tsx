@@ -8,6 +8,7 @@ import {
 	FormGroup,
 	InputGroup,
 	H3,
+	ControlGroup
 } from '@blueprintjs/core';
 
 
@@ -20,7 +21,6 @@ class EndpointSelect extends React.Component<any, any> {
 	componentDidMount() {
 		this.setState(state => ({ ...state, fetching: true, }));
 		this.props.endpoint.getAll().then(res => {
-			console.log(res, this.props.value);
 			this.setState(state => ({
 				...state,
 				fetching: true,
@@ -43,14 +43,17 @@ class EndpointSelect extends React.Component<any, any> {
 		const { data } = this.state;
 		console.log('render', value);
 		return (
-			<HTMLSelect fill disabled={disabled} name={name} value={value} onChange={this.onChange}>
-				{data.reduce((res, val) => {
-					res[value == val[endpoint.value] ? 'unshift' : 'push'](val);
-					return res;
-				}, []).map(el =>
-					<option key={el[endpoint.key]} value={el[endpoint.key]}>{el[endpoint.value]}</option>
-				)}
-			</HTMLSelect>
+			<ControlGroup fill={true} vertical={false}>
+				<HTMLSelect fill disabled={disabled} name={name} value={value} onChange={this.onChange}>
+					{data.reduce((res, val) => {
+						res[value == val[endpoint.value] ? 'unshift' : 'push'](val);
+						return res;
+					}, []).map(el =>
+						<option key={el[endpoint.key]} value={el[endpoint.key]}>{el[endpoint.value]}</option>
+					)}
+				</HTMLSelect>
+				<Button icon="add" />
+			</ControlGroup>
 		);
 	}
 }

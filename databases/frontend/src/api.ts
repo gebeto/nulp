@@ -39,4 +39,6 @@ const createClassicEndpoint = (prefix, key = 'id', value = 'name') => ({
 
 export const users = createClassicEndpoint('users');
 export const doors = createClassicEndpoint('doors');
+export const materials = createClassicEndpoint('materials');
+export const colors = createClassicEndpoint('colors');
 export const roles = createClassicEndpoint('roles');

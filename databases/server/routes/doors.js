@@ -9,11 +9,13 @@ exports.get = fabrics.get(['id'], `
 
 exports.getAll = fabrics.getAll([], `
 	SELECT
-		dr.id_door as id, 
+		dr.id_door as id,
 		dr.model,
 		dr.price,
-		m.name as material, 
-		c.name as color
+		m.name as material,
+		c.name as color,
+		dr.material_id,
+		dr.color_id
 	FROM "door" dr
 	LEFT JOIN "material" m ON dr.material_id = m.id_material
 	LEFT JOIN "color" c ON dr.color_id = c.id_color
