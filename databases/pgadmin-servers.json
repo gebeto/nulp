@@ -7,7 +7,7 @@
             "Port": 5432,
             "Username": "admin",
             "SSLMode": "prefer",
-            "MaintenanceDB": "main"
+            "MaintenanceDB": "admin"
         }
     }
 }
