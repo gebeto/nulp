@@ -26,6 +26,11 @@ INSERT INTO "city" (name, post_code) VALUES
 	('Чернігі', 14000)
 ;
 
+INSERT INTO "customer" (first_name, last_name, address, phone_number, city_id) VALUES
+	('Ярослав', 'Ничкало', 'Мармаша 135', '+380970067238', 1),
+	('Віталій', 'Ничкало', 'Мармаша 135', '+380970154039', 1)
+;
+
 INSERT INTO "color" (name) VALUES
 	('Прозорий'),
 	('Червоний'),
@@ -61,4 +66,15 @@ INSERT INTO "user" (email, password, role_id) VALUES
 	('manager_1', 'manager', 2),
 	('manager_2', 'manager', 2),
 	('manager_3', 'manager', 2)
+;
+
+
+INSERT INTO "employee" (first_name, last_name) VALUES 
+	('Баба', 'Згороду'),
+	('Андрій', 'Бамбула')
+;
+
+INSERT INTO "order" (customer_id, door_id, employee_id, width, height, length, details, date_on, date_off) VALUES 
+	(1, 1, 1, 1000, 1000, 1000, 'Тестове замовлення 1', now(), now()),
+	(2, 3, 2, 2000, 2000, 2000, 'Тестове замовлення 2', now(), now())
 ;

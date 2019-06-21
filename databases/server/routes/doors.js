@@ -11,6 +11,7 @@ exports.getAll = fabrics.getAll([], `
 	SELECT
 		dr.id_door as id,
 		dr.model,
+		dr.model as name,
 		dr.price,
 		m.name as material,
 		c.name as color,

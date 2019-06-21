@@ -5,7 +5,7 @@ import ItemEditor from '../components/ItemEditor';
 
 
 
-export const withItemsFetching = ({ title, endpoint, fields }) => (Component) => {
+export const pageWithItemsFetching = ({ title, endpoint, fields }) => (Component) => {
 	return class extends React.Component<any, any> {
 		static displayName = `Fetching(${Component.name})`;
 		isUnmounted = false;
@@ -14,7 +14,6 @@ export const withItemsFetching = ({ title, endpoint, fields }) => (Component) =>
 			data: [],
 			editableItem: null,
 			saving: false,
-
 			fetching: false,
 		};
 

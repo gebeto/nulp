@@ -5,14 +5,39 @@ const requireRoute = require('./requires').requireRoute;
 const arrFromObj = (arr, obj) => arr.map(el => obj[el]);
 
 
-exports.createRouter = (prefix) => {
+const dbUniqueMessage = /Key \((\w+?)\)[\w\W]+?already\sexists\./;
+function dbErrorsTransformator(error) {
+	if (error.detail) {
+		const err = error.detail;
+
+		if (dbUniqueMessage.exec(err)[1]) {
+			return {
+				unique: dbUniqueMessage.exec(err)[1],
+			};
+		}
+
+		return error.detail;
+	}
+
+	return error.message;
+}
+
+
+exports.createReadOnlyRouter = (prefix) => {
 	const router = express.Router();
 	router.post('/get', requireRoute(prefix, 'get'));
 	router.post('/getAll', requireRoute(prefix, 'getAll'));
+	return router;
+}
+
+
+exports.createRouter = (prefix) => {
+	const router = exports.createReadOnlyRouter(prefix);
 	router.post('/update', requireRoute(prefix, 'update'));
 	router.post('/add', requireRoute(prefix, 'add'));
 	return router;
 }
+
 
 
 exports.get = (args, select_query) => async function get(req, res) {
@@ -47,7 +72,7 @@ exports.update = (args, update_query) => async function update(req, res) {
 		console.log(err);
 		await res.send({
 			error: 1,
-			message: err.detail || err.message,
+			message: dbErrorsTransformator(err),
 		});		
 	}
 }
@@ -63,7 +88,7 @@ exports.add = (args, add_query) => async function add(req, res) {
 	} catch(err) {
 		await res.send({
 			error: 1,
-			message: err.detail || err.message,
+			message: dbErrorsTransformator(err),
 		});		
 	}
 }

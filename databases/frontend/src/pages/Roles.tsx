@@ -2,7 +2,7 @@ import * as React from 'react';
 import Table from '../components/Table';
 import { H1 } from '@blueprintjs/core';
 
-import { withItemsFetching } from '../hoc/withItemsFetching';
+import { pageWithItemsFetching } from '../hoc/pageWithItemsFetching';
 import { roles } from '../api';
 
 
@@ -11,12 +11,12 @@ const fields = [
 	{ key: 'name', title: 'Назва' },
 ];
 
-function Doors() {
+function Roles() {
 	return null;
 }
 
-export default withItemsFetching({
+export default pageWithItemsFetching({
 	title: "Ролі",
 	endpoint: roles,
 	fields: fields,
-})(<Doors />);
+})(Roles);

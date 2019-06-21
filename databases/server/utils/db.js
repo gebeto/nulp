@@ -7,7 +7,11 @@ const client = new Client({
 	port: 5432,
 });
 
+try {
 client.connect();
+} catch(err) {
+	console.log('ERRRRRR', err);
+}
 
 async function sendQuery(query, params) {
 	return await client.query(query, params);

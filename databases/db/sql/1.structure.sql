@@ -9,10 +9,10 @@ CREATE TABLE "logs" (
 
 CREATE TABLE "customer" (
 	id_customer SERIAL PRIMARY KEY, 
-	cname VARCHAR(50) NULL, 
-	surname VARCHAR(50) NULL, 
-	addess VARCHAR(50) NULL, 
-	phonenumber VARCHAR(50) NULL, 
+	first_name VARCHAR(50) NULL, 
+	last_name VARCHAR(50) NULL, 
+	address VARCHAR(50) NULL, 
+	phone_number VARCHAR(50) NULL, 
 	city_id INT NOT NULL
 ) WITH (
 	OIDS = FALSE
@@ -21,7 +21,6 @@ CREATE TABLE "customer" (
 
 CREATE TABLE "order" (
 	id_order SERIAL PRIMARY KEY, 
-	date_on DATE NULL, 
 	customer_id INT NULL, 
 	door_id INT NULL, 
 	employee_id INT NULL, 
@@ -29,7 +28,8 @@ CREATE TABLE "order" (
 	height VARCHAR(50) NULL, 
 	length VARCHAR(50) NULL, 
 	details VARCHAR(50) NULL, 
-	dateof DATE NULL
+	date_on DATE NULL, 
+	date_off DATE NULL
 ) WITH (
 	OIDS = FALSE
 );
@@ -48,9 +48,9 @@ CREATE TABLE "door" (
 
 CREATE OR REPLACE VIEW "vCustomer" AS
  SELECT cus.id_customer,
-	cus.cname,
-	cus.surname,
-	cus.phonenumber,
+	cus.first_name,
+	cus.last_name,
+	cus.phone_number,
 	ord.door_id,
 	ord.width,
 	ord.height,
@@ -73,9 +73,9 @@ CREATE TABLE "delivery" (
 
 
 CREATE OR REPLACE VIEW "vCustomersDelivery" AS
- SELECT cus.cname,
-	cus.surname,
-	cus.phonenumber,
+ SELECT cus.first_name,
+	cus.last_name,
+	cus.phone_number,
 	cus.id_customer,
 	ord.customer_id,
 	de.date,
@@ -124,8 +124,8 @@ CREATE TABLE "door_part" (
 
 CREATE TABLE "employee" (
 	id_employee SERIAL PRIMARY KEY, 
-	name VARCHAR(50) NULL, 
-	surname VARCHAR(50) NULL
+	first_name VARCHAR(50) NULL, 
+	last_name VARCHAR(50) NULL
 ) WITH (
 	OIDS = FALSE
 );
@@ -171,6 +171,7 @@ CREATE TABLE "user" (
 
 ALTER TABLE "customer" ADD CONSTRAINT FK_Customer_City FOREIGN KEY(city_id) REFERENCES "city" (id_city) ON DELETE CASCADE;
 
+
 ALTER TABLE "delivery" ADD CONSTRAINT FK_Delivery_Delivery_Type FOREIGN KEY(typedelivery_id) REFERENCES "delivery_type" (id_deliverytype) ON DELETE CASCADE;
 ALTER TABLE "delivery" ADD CONSTRAINT FK_Delivery_Order FOREIGN KEY(order_id) REFERENCES "order" (id_order) ON DELETE CASCADE;
 
@@ -194,3 +195,4 @@ ALTER TABLE "role" ADD CONSTRAINT UQ_Role_Name UNIQUE (name);
 
 ALTER TABLE "user" ADD CONSTRAINT FK_User_Role FOREIGN KEY(role_id) REFERENCES "role" (id) ON DELETE CASCADE;
 ALTER TABLE "user" ADD CONSTRAINT UQ_User_Email UNIQUE (email);
+

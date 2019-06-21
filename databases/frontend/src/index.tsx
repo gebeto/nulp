@@ -11,24 +11,21 @@ import { HashRouter, Route, Link } from "react-router-dom";
 import "@blueprintjs/core/lib/css/blueprint.css";
 import './index.scss';
 
-import Navbar from './Navbar';
-import Home from './pages/Home';
+import { pages } from './config';
+
+import Navbar from './components/Navbar';
 import Auth from './pages/Auth';
-import Users from './pages/Users';
-import Doors from './pages/Doors';
-import Roles from './pages/Roles';
 
 
 class App extends React.Component<any, any> {
 	renderAuth() {
 		return (
 			<div>
-				<Navbar />
+				<Navbar pages={pages} />
 				<div className="container">
-					<Route path="/" exact component={Home} />
-					<Route path="/users" exact component={Users} />
-					<Route path="/doors" exact component={Doors} />
-					<Route path="/roles" exact component={Roles} />
+					{pages.map(page =>
+						<Route key={page.path} exact {...page} />
+					)}
 				</div>
 			</div>
 		);

@@ -57,3 +57,27 @@ table {
 .w-0 {
 	max-width: 0;
 }
+
+.bp3-popover-content {
+	padding: 10px !important;
+}
+
+.notification-content {
+	min-width: 200px;
+	margin-top: 10px;
+	max-height: 300px;
+	overflow-y: auto;
+}
+
+.notification-item {
+	display: block;
+	line-height: 1;
+	margin-bottom: 0.5em;
+	padding: 0.5em;
+	border-radius: 0.4em;
+	border: 1px solid #eee;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}

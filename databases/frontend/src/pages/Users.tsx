@@ -2,7 +2,7 @@ import * as React from 'react';
 import Table from '../components/Table';
 import { H1 } from '@blueprintjs/core';
 
-import { withItemsFetching } from '../hoc/withItemsFetching';
+import { pageWithItemsFetching } from '../hoc/pageWithItemsFetching';
 import { users, roles } from '../api';
 
 
@@ -17,8 +17,8 @@ function Users() {
 	return null;
 }
 
-export default withItemsFetching({
+export default pageWithItemsFetching({
 	title: "Користувачі",
 	endpoint: users,
 	fields: fields,
-})(<Users />);
+})(Users);

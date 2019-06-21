@@ -42,14 +42,14 @@ class Auth extends React.Component<any, any> {
 		return (
 			<main className="centered">
 				<Card elevation={Elevation.TWO} className="auth-card">
-					<H3 className="text-center">Авторизація {token} {username}</H3>
+					<H3 className="text-center">Авторизація</H3>
 					<FormGroup labelFor="login-input">
 						<InputGroup id="login-input" placeholder="Логін" leftIcon="user" name="login" onChange={this.onFieldChange} />
 					</FormGroup>
 					<FormGroup labelFor="password-input">
 						<InputGroup type="password" id="password-input" placeholder="Пароль" leftIcon="key" name="password" onChange={this.onFieldChange}  />
 					</FormGroup>
-					<Button fill loading={loading} onClick={this.auth}>Логін</Button>
+					<Button fill loading={loading} onClick={this.auth}>Увійти</Button>
 				</Card>
 			</main>
 		);

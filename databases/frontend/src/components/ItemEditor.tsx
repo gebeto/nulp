@@ -117,7 +117,7 @@ const EndpointSelect = EditableHoc()((props) => {
 				)}
 			</HTMLSelect>
 			<Button icon="cog" onClick={onEditClick} />
-			<Button icon="add" onClick={onAddClick} />
+			{field.add === false ? null : <Button icon="add" onClick={onAddClick} />}
 			<AddItemDialog
 				isOpen={isAddDialogOpen}
 				onAddClose={onAddClose}
@@ -184,7 +184,7 @@ class ItemEditor extends React.Component<any, any> {
 									{field.type === 'select' ?
 									<EndpointSelect disabled={field.editable === false} name={field.key} value={newData[field.key]} onChange={this.onFieldChange} endpoint={field.endpoint} changeName={field.changeName} field={field} />
 									:
-									<InputGroup type={field.type} disabled={field.editable === false} placeholder={field.title} name={field.key} value={newData[field.key]} onChange={this.onFieldChange} />
+									<InputGroup autoComplete="off" type={field.type} disabled={field.editable === false} placeholder={field.title} name={field.key} value={newData[field.key]} onChange={this.onFieldChange} />
 									}
 								</FormGroup>
 							)

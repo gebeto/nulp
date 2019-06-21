@@ -2,7 +2,7 @@ import * as React from 'react';
 import Table from '../components/Table';
 import { H1 } from '@blueprintjs/core';
 
-import { withItemsFetching } from '../hoc/withItemsFetching';
+import { pageWithItemsFetching } from '../hoc/pageWithItemsFetching';
 import { doors, materials, colors } from '../api';
 
 
@@ -18,8 +18,8 @@ function Doors() {
 	return null;
 }
 
-export default withItemsFetching({
+export default pageWithItemsFetching({
 	title: "Двері",
 	endpoint: doors,
 	fields: fields,
-})(<Doors />);
+})(Doors);
