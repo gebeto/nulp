@@ -1,3 +1,6 @@
+import store from './store/';
+import { resetAuthData } from './store/Globals';
+
 const base_url = "/api"
 
 export const API = (method, data?) => {
@@ -11,7 +14,14 @@ export const API = (method, data?) => {
 			...data,
 			token: localStorage.getItem('token'),
 		}),
-	}).then(res => res.json())
+	}).then(res => {
+		if (res.status === 401) {
+			store.dispatch(resetAuthData());
+			throw "Unauthorized!";
+		}
+
+		return res.json();
+	})
 };
 
 export const login = (login, password) => {
@@ -35,20 +45,23 @@ const createEndpoint = (prefix, methods, { key = 'id', value = 'name', isDict = 
 	return result;
 }
 
-
+const createReadOnlyEndpoint = (prefix) => createEndpoint(prefix, ['get', 'getAll']);
 const createClassicEndpoint = (prefix, opts) => {
 	const methods = createEndpoint(prefix, ['get', 'getAll', 'update', 'add'], opts);
 	return methods;
 };
 
 
+export const employees = createReadOnlyEndpoint('employees');
+export const customers = createReadOnlyEndpoint('customers');
+export const deliveries = createReadOnlyEndpoint('deliveries');
+
 export const orders = createEndpoint('orders', ['get', 'getAll', 'update']);
-export const employees = createEndpoint('employees', ['get', 'getAll']);
-export const customers = createEndpoint('customers', ['get', 'getAll']);
 export const users = createEndpoint('users', ['get', 'getAll', 'update']);
 export const doors = createEndpoint('doors', ['get', 'getAll', 'update']);
 export const logs = createEndpoint('logs', ['get', 'getAll', 'update']);
 
+export const cities = createClassicEndpoint('cities');
 export const materials = createClassicEndpoint('materials', { isDict: true });
 export const colors = createClassicEndpoint('colors', { isDict: true });
 export const roles = createClassicEndpoint('roles', { isDict: true });

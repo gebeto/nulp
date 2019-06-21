@@ -78,3 +78,15 @@ INSERT INTO "order" (customer_id, door_id, employee_id, width, height, length, d
 	(1, 1, 1, 1000, 1000, 1000, 'Тестове замовлення 1', now(), now()),
 	(2, 3, 2, 2000, 2000, 2000, 'Тестове замовлення 2', now(), now())
 ;
+
+INSERT INTO "delivery_type" (name) VALUES 
+	('Відправлено'),
+	('Вкрадено'),
+	('Отримано')
+;
+
+
+INSERT INTO "delivery" (date, done, order_id, deliverytype_id) VALUES 
+	(now(), true, 1, 1),
+	(now(), true, 2, 1)
+;

@@ -66,14 +66,17 @@ CREATE TABLE "delivery" (
 	date TIMESTAMP NULL, 
 	done BOOLEAN NULL, 
 	order_id INT NOT NULL, 
-	typedelivery_id INT NOT NULL
+	deliverytype_id INT NOT NULL
 ) WITH (
 	OIDS = FALSE
 );
 
 
 CREATE OR REPLACE VIEW "vCustomersDelivery" AS
- SELECT cus.first_name,
+ SELECT
+ 	de.id_delivery as id,
+ 	CONCAT(cus.first_name, ' ', cus.last_name) as name,
+ 	cus.first_name,
 	cus.last_name,
 	cus.phone_number,
 	cus.id_customer,
@@ -106,7 +109,7 @@ CREATE TABLE "color" (
 
 CREATE TABLE "delivery_type" (
 	id_deliverytype SERIAL PRIMARY KEY, 
-	type VARCHAR(50) NULL
+	name VARCHAR(50) NULL
 ) WITH (
 	OIDS = FALSE
 );
@@ -172,7 +175,7 @@ CREATE TABLE "user" (
 ALTER TABLE "customer" ADD CONSTRAINT FK_Customer_City FOREIGN KEY(city_id) REFERENCES "city" (id_city) ON DELETE CASCADE;
 
 
-ALTER TABLE "delivery" ADD CONSTRAINT FK_Delivery_Delivery_Type FOREIGN KEY(typedelivery_id) REFERENCES "delivery_type" (id_deliverytype) ON DELETE CASCADE;
+ALTER TABLE "delivery" ADD CONSTRAINT FK_Delivery_Delivery_Type FOREIGN KEY(deliverytype_id) REFERENCES "delivery_type" (id_deliverytype) ON DELETE CASCADE;
 ALTER TABLE "delivery" ADD CONSTRAINT FK_Delivery_Order FOREIGN KEY(order_id) REFERENCES "order" (id_order) ON DELETE CASCADE;
 
 ALTER TABLE "door" ADD CONSTRAINT FK_Door_Color FOREIGN KEY(color_id) REFERENCES "color" (id_color) ON DELETE CASCADE;
