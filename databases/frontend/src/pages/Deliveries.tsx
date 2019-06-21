@@ -9,7 +9,7 @@ import { deliveries, employees, customers, doors } from '../api';
 const fields = [
 	{ key: 'id', title: 'Id', editable: false },
 	// customer_id: 1
-	{ key: 'done', title: 'Доставлено', editable: false },
+	{ key: 'done', title: 'Доставлено', type: 'bool', editable: false },
 	{ key: 'name', title: 'Отримувач', editable: false },
 	{ key: 'phone_number', title: 'Номер отримувача', editable: false },
 	// id_customer: 1

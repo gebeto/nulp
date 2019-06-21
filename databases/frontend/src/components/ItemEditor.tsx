@@ -183,6 +183,8 @@ class ItemEditor extends React.Component<any, any> {
 								<FormGroup label={field.title} key={field.key}>
 									{field.type === 'select' ?
 									<EndpointSelect disabled={field.editable === false} name={field.key} value={newData[field.key]} onChange={this.onFieldChange} endpoint={field.endpoint} changeName={field.changeName} field={field} />
+									: field.type === 'bool' ?
+									<InputGroup disabled value={newData[field.key] ? 'Так' : 'Ні'} />
 									:
 									<InputGroup autoComplete="off" type={field.type} disabled={field.editable === false} placeholder={field.title} name={field.key} value={newData[field.key]} onChange={this.onFieldChange} />
 									}

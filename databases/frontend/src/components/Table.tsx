@@ -13,7 +13,12 @@ class TableRow extends React.Component<any, any> {
 		return (
 			<tr key={index} onClick={this.onEditClick}>
 				{fields.map(field =>
-					<td key={field.key}>{data[field.key]}</td>
+					<td key={field.key}>
+						{field.type === 'bool'
+						? data[field.key] ? 'Так' : 'Ні'
+						:
+						data[field.key]}
+					</td>
 				)}
 			</tr>
 		);
