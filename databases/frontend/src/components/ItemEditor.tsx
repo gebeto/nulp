@@ -88,7 +88,7 @@ const EditableHoc = () => (Component) => class extends React.Component<any, any>
 }
 
 
-const EndpointSelectRaw = (props) => {
+const EndpointSelect = EditableHoc()((props) => {
 	const {
 		name,
 		value,
@@ -105,8 +105,6 @@ const EndpointSelectRaw = (props) => {
 		isAddDialogOpen,
 		isEditDialogOpen,
 	} = props;
-
-	console.log('ED', isEditDialogOpen);
 
 	return (
 		<ControlGroup fill={true} vertical={false}>
@@ -135,10 +133,7 @@ const EndpointSelectRaw = (props) => {
 			/>
 		</ControlGroup>
 	);
-}
-
-
-const EndpointSelect = EditableHoc()(EndpointSelectRaw);
+});
 
 
 class ItemEditor extends React.Component<any, any> {
