@@ -1,0 +1,4 @@
+# Compiled arduino binaries
+*.elf
+*.hex
+
