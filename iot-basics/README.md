@@ -10,6 +10,11 @@ arduino:avr:uno    /dev/cu.usbmodem12345    2341:0043    Arduino/Genuina Uno
 
 ```
 
+## Install dependencies
+```sh
+$ arduino-cli core install arduino:avr
+```
+
 
 ## Board List to parameters mapping
  - `--fqbn` - Fully Qualified Board Name (FQBN)
