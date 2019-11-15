@@ -1,3 +1,22 @@
+# IOT Basics
+
+## Get list of boards
+```sh
+$ arduino-cli board list
+```
+
+### Dictionary
+ > ### --fqbn
+ > #### Fully Qualified Board Name (FQBN)
+ > #### Example:
+ > - arduino:avr:uno
+ >
+
+ > ### -p
+ > #### Port (Port)
+ > #### Example:
+ > - /dev/cu.usbmodem12345
+ >
 
 ## Create project
 ```sh
@@ -7,6 +26,11 @@
 
 ## Compile project
 ```sh
- $ arduino-cli compile --fqbn arduino:avr:uno $(pwd)
+ $ arduino-cli compile --fqbn <FBQN> $(pwd)
 ```
 
+
+## Upload compiled project to arduino
+```sh
+ $ arduino-cli upload -p <Port> --fqbn <FBQN> $(pwd)
+```
