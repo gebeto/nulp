@@ -1,3 +1,5 @@
+#! node
+
 const fs = require("fs");
 
 const M = Math.pow(2, 31);
