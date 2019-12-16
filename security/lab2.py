@@ -13,19 +13,17 @@ rotate_amounts = [
 constants = [int(abs(math.sin(i+1)) * 2**32) & 0xFFFFFFFF for i in range(64)] 
 init_values = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476]
 
-# functions = \
-#     16*[lambda b, c, d: (b & c) | (~b & d)] +\
-#     16*[lambda b, c, d: (d & b) | (~d & c)] +\
-#     16*[lambda b, c, d: b ^ c ^ d] +\
-#     16*[lambda b, c, d: c ^ (b | ~d)]
-
 functions = \
     16*[lambda b, c, d: (b & c) | (~b & d)] +\
     16*[lambda b, c, d: (d & b) | (~d & c)] +\
     16*[lambda b, c, d: b ^ c ^ d] +\
     16*[lambda b, c, d: c ^ (b | ~d)]
 
-index_functions = 16*[lambda i: i] + 16*[lambda i: (5*i + 1)%16] + 16*[lambda i: (3*i + 5)%16] + 16*[lambda i: (7*i)%16]
+index_functions = \
+    16*[lambda i: i] + \
+    16*[lambda i: (5*i + 1)%16] + \
+    16*[lambda i: (3*i + 5)%16] + \
+    16*[lambda i: (7*i)%16]
  
 def left_rotate(x, amount):
     x &= 0xFFFFFFFF
