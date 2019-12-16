@@ -30,7 +30,7 @@ def left_rotate(x, amount):
     return ((x<<amount) | (x>>(32-amount))) & 0xFFFFFFFF
  
 def md5(message):
-    message = bytearray(message, "utf-8") #copy our input into a mutable buffer
+    message = bytearray(message, "utf-8")
     orig_len_in_bits = (8 * len(message)) & 0xffffffffffffffff
     message.append(0x80)
     while len(message)%64 != 56:
