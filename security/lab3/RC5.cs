@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace RC5Alg
+namespace Lab3
 {
 	class RC5
 	{

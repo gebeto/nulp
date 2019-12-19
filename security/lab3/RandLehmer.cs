@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RC5Alg
+namespace Lab3
 {
 	public class RandLehmer
 	{
