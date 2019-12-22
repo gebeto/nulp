@@ -60,23 +60,43 @@ describe("Vector 2", () => {
 	});
 
 	it("Sub scalar", () => {
-		expect(1).toBe(1);
+		const vector = new Vector2(1,1);
+		expect(vector).toMatchObject({x: 1, y: 1});
+		vector.subScalar(10);
+		expect(vector).toMatchObject({x: -9, y: -9});
 	});
 
 	it("Divide", () => {
-		expect(1).toBe(1);
+		const vector = new Vector2(1,1);
+		expect(vector).toMatchObject({x: 1, y: 1});
+		vector.divide(new Vector2(2, 2));
+		expect(vector).toMatchObject({x: 0.5, y: 0.5});
+	});
+
+	it("Divide scalar", () => {
+		const vector = new Vector2(1,1);
+		expect(vector).toMatchObject({x: 1, y: 1});
+		vector.divideScalar(2);
+		expect(vector).toMatchObject({x: 0.5, y: 0.5});
 	});
 	
 	it("Multiply", () => {
-		expect(1).toBe(1);
+		const vector = new Vector2(2,2);
+		expect(vector).toMatchObject({x: 2, y: 2});
+		vector.multiply(new Vector2(10,2));
+		expect(vector).toMatchObject({x: 20, y: 4});
 	});
 	
 	it("Copy", () => {
-		expect(1).toBe(1);
+		const vector = new Vector2(2,2);
+		const vecClone = vector.clone();
+		expect(vector).toBe(vector);
+		expect(vector).not.toBe(vecClone);
 	});
 
-	it("Clamp", () => {
-		expect(1).toBe(1);
+	it("Length", () => {
+		const vector = new Vector2(3, 4);
+		expect(vector.length()).toBe(5);
 	});
 
 });
